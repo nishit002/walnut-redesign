@@ -48,10 +48,10 @@ section{padding:72px 0}
 .hero-text{display:flex;flex-direction:column;gap:20px}
 .hero-note{font-size:13px;color:var(--muted)}
 .hero-shot{border-radius:16px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(30,30,72,.35);border:1px solid var(--line);background:#fff}
-.shot{width:100%;aspect-ratio:1456/797;object-fit:cover;object-position:bottom}
+.shot{width:100%;height:auto;aspect-ratio:1456/797;object-fit:cover;object-position:left bottom}
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:8px}
 .stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px}
-.stat b{display:block;font-family:Poppins,sans-serif;font-size:26px;font-weight:700;color:var(--navy)}
+.stat b{display:block;font-family:Poppins,sans-serif;font-size:24px;font-weight:700;color:var(--navy);white-space:nowrap}
 .stat span{font-size:13px;color:var(--muted)}
 
 /* Cards and grids */
