@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Walnut Learning Suite | Walnut DataTech (redesign mockup)</title>
+<meta name="description" content="Five connected apps for schools and colleges: On-Screen Evaluation, Learning Improvement Plans, Pedagogy Engine, Peer Learning and Andragogy Engine.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="mock-banner">Design mockup for the Walnut team · not the live site · <a href="https://walnutdatatech.com/learning-suite/" style="color:#fff;text-decoration:underline">see current page</a></div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Walnut DataTech home"><img src="images/logo.svg" alt="Walnut DataTech"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Solutions</a>
+      <a href="learning-suite.html" class="active">Learning Suite</a>
+      <a href="https://walnutdatatech.com/academy/">Courses</a>
+      <a href="https://walnutdatatech.com/jobs/">Jobs</a>
+      <a href="https://walnutdatatech.com/partners/">Partners</a>
+      <a href="https://walnutdatatech.com/about/">About</a>
+    </nav>
+    <div class="header-cta">
+      <a class="signin" href="https://walnutdatatech.com/">Sign in</a>
+      <a class="btn btn-primary btn-sm" href="#demo-form">Request a demo</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-text">
+        <span class="eyebrow">Walnut Learning Suite</span>
+        <h1>One login. <span class="accent">One learning loop.</span></h1>
+        <p class="lead">Five apps for schools, colleges and lifelong learners. Each works on its own. Together, exam results shape improvement plans, lessons and peer groups automatically.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="https://walnutdatatech.com/learning-suite/demo/">Open the live demo</a>
+          <a class="btn btn-outline" href="#demo-form">Request a guided demo</a>
+        </div>
+        <p class="hero-note">Try it with sample CBSE data. No sign-up needed.</p>
+      </div>
+      <div class="hero-shot"><img class="shot" src="images/portal.jpg" alt="Walnut portal: a principal's home screen with all five Learning Suite apps" width="1456" height="797"></div>
+    </div>
+  </div>
+
+  <!-- Five apps -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">The apps</span>
+        <h2>Five apps at a glance</h2>
+        <p class="lead">Take one app, a bundle or the complete suite.</p>
+      </div>
+      <div class="grid-5" id="glance"></div>
+    </div>
+  </section>
+
+  <!-- Loop -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">How the apps connect</span>
+        <h2>One result updates everything else</h2>
+        <p class="lead">Every app uses the same building block: the learning outcome. When results come in, the other apps update, with no copying between systems.</p>
+      </div>
+      <div class="loop">
+        <div class="core">Shared by all apps: learning outcomes</div>
+        <ol>
+          <li><span class="step">STEP 1 · ON-SCREEN EVALUATION</span><b>Answer sheets are marked and results published</b><span>Every mark is tied to a learning outcome.</span></li>
+          <li><span class="step">STEP 2 · IMPROVEMENT PLANS</span><b>Each learner's plan updates by itself</b><span>Weakest outcomes get goals, practice and a mentor.</span></li>
+          <li><span class="step">STEP 3 · PEER LEARNING</span><b>Study groups are re-formed</b><span>Strong and developing learners are paired on the same outcome.</span></li>
+          <li><span class="step">STEP 4 · PEDAGOGY ENGINE</span><b>Teachers see which outcomes need a new lesson</b><span>Lessons are redesigned before the next exam.</span></li>
+        </ol>
+        <p class="foot">The loop repeats every term. Each app also works fully on its own, so you can start with one and add the others later.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- App viewer -->
+  <section id="apps" style="background:#FAFAFC">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Inside each app</span><h2>See what each app does</h2></div>
+      <div class="tabs" role="tablist" aria-label="Apps" id="app-tabs"></div>
+      <div class="viewer">
+        <div class="info">
+          <h3 id="v-name" style="font-size:28px"></h3>
+          <p id="v-does" style="font-size:17px"></p>
+          <p class="for"><b>For:</b> <span id="v-who"></span></p>
+          <ul class="ticks" id="v-points" style="grid-template-columns:1fr"></ul>
+          <div class="btn-row"><a class="btn btn-dark btn-sm" id="v-demo" href="https://walnutdatatech.com/learning-suite/demo/">Try it in the demo</a></div>
+        </div>
+        <div class="shot-frame" style="border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 20px 40px -20px rgba(30,30,72,.3)"><img class="shot" id="v-img" src="images/evaluation.jpg" alt="" width="1456" height="797"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- By role -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Where to start</span><h2>Find your app by role</h2></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">If you are…</th><th scope="col">Start with</th><th scope="col">You'll use it to</th></tr></thead>
+          <tbody>
+            <tr><td>Exam cell or evaluator</td><td class="app">On-Screen Evaluation</td><td>Mark, moderate and publish results faster</td></tr>
+            <tr><td>Principal, HOD or mentor</td><td class="app">Learning Improvement Plans</td><td>Track each learner's and teacher's improvement</td></tr>
+            <tr><td>School teacher or curriculum head</td><td class="app">Pedagogy Engine</td><td>Plan CBSE-aligned lessons and close coverage gaps</td></tr>
+            <tr><td>Teacher running group work</td><td class="app">Peer Learning</td><td>Build study groups and measure their impact</td></tr>
+            <tr><td>College faculty or FDP lead</td><td class="app">Andragogy Engine</td><td>Design self-directed courses for adult learners</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ways to buy -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Plans</span><h2>Start small or take the whole suite</h2></div>
+      <div class="grid-3">
+        <div class="plan"><h3>One app</h3><p>Solve one problem first, for example on-screen marking for your exam cell.</p><span class="apps">Any 1 of the 5 apps</span><a class="btn btn-outline btn-sm" href="#demo-form">Ask for pricing</a></div>
+        <div class="plan featured"><span class="tag">Most connected start</span><h3>A bundle</h3><p>Evaluation plus Improvement Plans, so results turn straight into action.</p><span class="apps">2 or more apps</span><a class="btn btn-primary btn-sm" href="#demo-form">Ask for pricing</a></div>
+        <div class="plan"><h3>Complete suite</h3><p>All five apps behind one login for the whole school or college.</p><span class="apps">All 5 apps</span><a class="btn btn-outline btn-sm" href="#demo-form">Ask for pricing</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo form -->
+  <section id="demo-form" style="background:linear-gradient(180deg,#FFFFFF,#FFF0F6)">
+    <div class="wrap grid-2" style="align-items:start">
+      <div class="sec-head">
+        <span class="eyebrow">Request a demo</span>
+        <h2>See the suite with your own use case</h2>
+        <p class="lead">We'll walk you through it with sample CBSE data and help you choose one app, a bundle or the complete suite.</p>
+      </div>
+      <form class="demo" onsubmit="event.preventDefault();this.querySelector('button').textContent='Thanks, this is a mockup form';">
+        <label>Full name<input type="text" autocomplete="name"></label>
+        <label>School, college or university<input type="text" autocomplete="organization"></label>
+        <label>Work email<input type="email" autocomplete="email"></label>
+        <label>Phone (optional)<input type="tel" autocomplete="tel"></label>
+        <label class="full">Which apps interest you?<select><option>Not sure yet</option><option>On-Screen Evaluation</option><option>Learning Improvement Plans</option><option>Pedagogy Engine</option><option>Peer Learning</option><option>Andragogy Engine</option><option>Complete suite</option></select></label>
+        <button class="btn btn-primary full" type="submit">Request a demo</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="cols">
+      <div><span class="logo-box"><img src="images/logo.svg" alt="Walnut DataTech" style="height:28px"></span><p>Technology, learning and partnerships for online education.</p><p style="margin-top:10px">Graphix Tower, A-13A, Block A, Sector 62, Noida, Uttar Pradesh 201309</p></div>
+      <div><h4>For universities</h4><a href="index.html">Solutions</a><a href="learning-suite.html">Learning Suite</a><a href="https://walnutdatatech.com/jobs/">Walnut Jobs</a></div>
+      <div><h4>Courses</h4><a href="https://walnutdatatech.com/academy/">All courses</a><a href="https://walnutdatatech.com/">Verify a certificate</a></div>
+      <div><h4>Company</h4><a href="https://walnutdatatech.com/about/">About</a><a href="https://walnutdatatech.com/contact/">Contact</a><a href="mailto:support@walnutdatatech.com">support@walnutdatatech.com</a></div>
+    </div>
+    <p class="copy">© Walnut Data Tech Private Limited · Redesign mockup</p>
+  </div>
+</footer>
+
+<script>
+const APPS=[
+  {name:'On-Screen Evaluation',img:'evaluation',demo:'evaluation/',does:'Mark scanned answer sheets on screen, step by step, with AI suggestions you control.',who:'Exam cells and evaluators',whoLong:'Exam cells, evaluators and moderators in schools and colleges.',points:['Upload question papers, marking schemes and scanned answer sheets, then assign them to evaluators.','Award marks for each step of the marking scheme, with ticks, crosses and comments on the page.','AI suggests step marks with a reason; faculty accept or override every one.','Moderation, re-evaluation requests and outcome-wise results, published in one click.']},
+  {name:'Learning Improvement Plans',img:'plans',demo:'plans/',does:'Turn results into a personal improvement plan for every student and teacher.',who:'Mentors, class teachers, principals',whoLong:'Mentors, class teachers, principals and heads of department.',points:['Plans start from each learner’s weakest learning outcomes, with a baseline and a target.','Suggested goals, practice and content, with mentor check-ins and progress tracking.','Progress updates by itself when new results are published.','Professional plans for faculty, linked to teacher development.']},
+  {name:'Pedagogy Engine',img:'pedagogy',demo:'pedagogy/',does:'Design CBSE-aligned lessons with proven teaching models and track class progress.',who:'School teachers, curriculum heads',whoLong:'School teachers, content designers and curriculum heads.',points:['A curriculum map of NCERT chapters and learning outcomes, with coverage gaps highlighted.','A lesson designer built on 5E, gradual release and experiential models, with an AI first draft.','A shared content library, with review and approval by the curriculum head.']},
+  {name:'Peer Learning',img:'peer',demo:'peer/',does:'Form pairs and study groups from real outcome data, then run and measure sessions.',who:'Teachers, students, peer tutors',whoLong:'Teachers who facilitate, students and peer tutors.',points:['Suggested pairs and groups that match strong and developing learners on the same outcomes.','Sessions with agendas, attendance and shared tasks.','Peer feedback after every session.','Impact reports that show mastery before and after.']},
+  {name:'Andragogy Engine',img:'andragogy',demo:'andragogy/',does:'Design self-directed courses for college students, working professionals and teachers.',who:'Colleges, faculty development',whoLong:'Colleges, faculty development programmes and individual learners.',points:['Course design around adult-learning principles, with a completeness check.','Module templates for experiential, problem-based, case and flipped learning.','Learners set their own goals, choose their path and keep a reflection journal.','Faculty review reflections and see where each learner needs support.']}
+];
+let cur=0;
+const g=document.getElementById('glance');
+APPS.forEach((a,i)=>{
+  const c=document.createElement('article');c.className='app-card';
+  c.innerHTML=`<img class="thumb" src="images/${a.img}.jpg" alt="${a.name} dashboard" loading="lazy"><div class="body"><h3>${a.name}</h3><p>${a.does}</p><p class="who">For: ${a.who}</p></div>`;
+  const b=document.createElement('button');b.type='button';b.className='btn btn-outline btn-sm';b.textContent='See inside';
+  b.onclick=()=>{cur=i;render();document.getElementById('apps').scrollIntoView()};
+  c.querySelector('.body').appendChild(b);g.appendChild(c);
+});
+function render(){
+  const t=document.getElementById('app-tabs');t.innerHTML='';
+  APPS.forEach((a,i)=>{const b=document.createElement('button');b.type='button';b.className='tab';b.textContent=a.name;b.setAttribute('role','tab');b.setAttribute('aria-selected',i===cur);b.onclick=()=>{cur=i;render()};t.appendChild(b)});
+  const a=APPS[cur];
+  document.getElementById('v-name').textContent=a.name;
+  document.getElementById('v-does').textContent=a.does;
+  document.getElementById('v-who').textContent=a.whoLong;
+  document.getElementById('v-points').innerHTML=a.points.map(p=>`<li>${p}</li>`).join('');
+  const img=document.getElementById('v-img');img.src=`images/${a.img}.jpg`;img.alt=`${a.name} dashboard in the Walnut demo`;
+  document.getElementById('v-demo').href='https://walnutdatatech.com/learning-suite/demo/'+a.demo;
+}
+render();
+</script>
+</body>
+</html>
