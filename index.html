@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 <div class="mock-banner">Design mockup for the Walnut team · not the live site · <a href="https://walnutdatatech.com/solutions/" style="color:#fff;text-decoration:underline">see current page</a></div>
@@ -41,8 +41,8 @@
         <h1>One partner to run your <span class="accent">online programmes</span>, from set-up to placement</h1>
         <p class="lead">Pick the services you need from 10 service areas. We set them up, run them day to day and keep them in line with UGC and DEB rules.</p>
         <div class="btn-row">
-          <a class="btn btn-primary" href="#build">Build your solution</a>
-          <a class="btn btn-outline" href="#contact">Talk to us</a>
+          <a class="btn btn-yellow" href="#build">Build your solution</a>
+          <a class="btn btn-ghost" href="#contact">Talk to us</a>
         </div>
         <div class="stats">
           <div class="stat"><b>10</b><span>service areas</span></div>
@@ -68,7 +68,7 @@
   </section>
 
   <!-- Builder -->
-  <section id="build" style="background:#FAFAFC">
+  <section id="build" style="background:#FBFAFF">
     <div class="wrap">
       <div class="sec-head">
         <span class="eyebrow">Build your solution</span>
@@ -122,9 +122,9 @@
         <p class="lead">Where regulation applies, the service is delivered in line with it.</p>
       </div>
       <div class="grid-3">
-        <div class="card"><h3>Content delivery</h3><p>Through LMS and mobile app, as UGC Regulations require.</p></div>
-        <div class="card"><h3>Examinations</h3><p>Proctored online exams under current UGC Regulations.</p></div>
-        <div class="card"><h3>Reporting</h3><p>UGC/DEB reports, with Academic Bank of Credit registration and data sharing.</p></div>
+        <div class="card c-violet"><span class="ico">1</span><h3>Content delivery</h3><p>Through LMS and mobile app, as UGC Regulations require.</p></div>
+        <div class="card c-coral"><span class="ico">2</span><h3>Examinations</h3><p>Proctored online exams under current UGC Regulations.</p></div>
+        <div class="card c-teal"><span class="ico">3</span><h3>Reporting</h3><p>UGC/DEB reports, with Academic Bank of Credit registration and data sharing.</p></div>
       </div>
     </div>
   </section>
@@ -133,7 +133,7 @@
   <section style="padding-top:0">
     <div class="wrap">
       <div class="sec-head"><span class="eyebrow">Also from Walnut</span><h2>Products your students and staff use every day</h2></div>
-      <div class="promo">
+      <div class="promo p-violet">
         <div style="display:flex;flex-direction:column;gap:14px">
           <span class="eyebrow">Walnut Learning Suite</span>
           <h3 style="font-size:26px">Five connected apps for teaching, assessment and improvement</h3>
@@ -142,7 +142,7 @@
         </div>
         <div class="shot-frame"><img class="shot" src="images/portal.jpg" alt="Walnut portal home showing the five Learning Suite apps for a principal" loading="lazy" width="1456" height="797"></div>
       </div>
-      <div class="promo">
+      <div class="promo p-teal">
         <div style="display:flex;flex-direction:column;gap:14px">
           <span class="eyebrow">Walnut Jobs</span>
           <h3 style="font-size:26px">Help your graduates into international jobs</h3>
@@ -202,7 +202,7 @@ const el=(t,a={},h='')=>{const e=document.createElement(t);Object.assign(e,a);if
 function renderMap(){
   const m=document.getElementById('stage-map');
   STAGES.forEach((s,i)=>{
-    const box=el('div',{className:'stage'},`<div class="stage-top"><span class="stage-num">${s.num}</span><h3>${s.name}</h3></div><p>${s.goal}</p>`);
+    const box=el('div',{className:'stage s'+i},`<div class="stage-top"><span class="stage-num">${s.num}</span><h3>${s.name}</h3></div><p>${s.goal}</p>`);
     SERVICES.filter(v=>v.st===i).forEach(v=>{
       const b=el('button',{type:'button',className:'svc-link'},`<span>${v.title}</span><small>${v.count} modules</small>`);
       b.onclick=()=>{stage=i;render();document.getElementById('build').scrollIntoView()};
