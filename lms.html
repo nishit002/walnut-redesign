@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Walnut LMS — Learner Workspace (Redesign)</title>
+<meta name="description" content="High-density, zero-scroll Learner Workspace for Walnut LMS: Dashboard, Split-Screen Course Player, 4-Quadrant UGC flow, AI Pitch Coach and Live Classes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=4">
+</head>
+<body>
+<div class="mock-banner">
+  <span>Walnut LMS Learner Portal Redesign · High-density &amp; zero-scroll flow</span>
+  <span>·</span>
+  <a href="https://lms.walnutdatatech.com/dashboard" target="_blank" rel="noopener">compare with current lms.walnutdatatech.com ↗</a>
+</div>
+
+<header class="site-header">
+  <div class="wrap" style="max-width:1440px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <a class="logo" href="index.html" aria-label="Walnut DataTech home"><img src="images/logo.svg" alt="Walnut DataTech"></a>
+      <span class="eyebrow" style="background:var(--violet-soft);color:var(--violet)">Learner Portal</span>
+    </div>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Solutions</a>
+      <a href="learning-suite.html">Learning Suite</a>
+      <a href="lms.html" class="active">Student LMS <span class="badge-new">Redesigned</span></a>
+      <a href="https://walnutdatatech.com/academy/">Courses</a>
+      <a href="https://walnutdatatech.com/jobs/">Jobs</a>
+    </nav>
+    <div class="header-cta">
+      <div class="lms-kpi-strip">
+        <span class="lms-kpi-chip" title="Daily learning streak">🔥 <b>4d</b> streak</span>
+        <span class="lms-kpi-chip" title="Time learned this week">⏱ <b>42m</b> / 60m wk</span>
+      </div>
+      <div class="lms-user-pill" style="padding:5px 10px">
+        <div class="lms-avatar" style="width:28px;height:28px;font-size:11px">AR</div>
+        <div class="lms-user-meta"><b>Arsh</b><span>Learner · Admin</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="lms-shell">
+  <!-- Compact Left Navigation -->
+  <aside class="lms-sidebar" aria-label="Learner navigation">
+    <div class="lms-nav-group">
+      <span class="lms-nav-label">Workspace</span>
+      <button type="button" class="lms-nav-btn active" data-view="dashboard" onclick="switchView('dashboard')">
+        <span>⌂ Dashboard</span>
+      </button>
+      <button type="button" class="lms-nav-btn" data-view="player" onclick="switchView('player')">
+        <span>▶ Course Player</span>
+        <span class="pill-count">Now</span>
+      </button>
+      <button type="button" class="lms-nav-btn" data-view="courses" onclick="switchView('courses')">
+        <span>▤ My Learning</span>
+        <span class="pill-count">3</span>
+      </button>
+      <button type="button" class="lms-nav-btn" data-view="live" onclick="switchView('live')">
+        <span>((•)) Live Classes</span>
+        <span class="pill-count">2</span>
+      </button>
+      <button type="button" class="lms-nav-btn" data-view="assignments" onclick="switchView('player');setQuad(4)">
+        <span>☑ Assignments &amp; Lab</span>
+        <span class="pill-count">1 due</span>
+      </button>
+      <button type="button" class="lms-nav-btn" data-view="certificates" onclick="switchView('courses')">
+        <span>★ Certificates &amp; ABC</span>
+      </button>
+    </div>
+
+    <div class="lms-nav-group">
+      <span class="lms-nav-label">Community &amp; Support</span>
+      <button type="button" class="lms-nav-btn" onclick="switchView('player');setDock('qa')">
+        <span>💬 Q3 Discussion Forum</span>
+        <span class="pill-count">4</span>
+      </button>
+      <button type="button" class="lms-nav-btn" onclick="alert('Opens instant ticket / WhatsApp mentor support')">
+        <span>? Help &amp; Feedback</span>
+      </button>
+    </div>
+
+    <div class="lms-streak-box">
+      <div class="row"><span>Weekly Goal</span><span style="color:var(--yellow)">70%</span></div>
+      <div class="lms-bar"><i style="width:70%"></i></div>
+      <span style="color:#D9D1FF;font-size:11px">Complete <b>Reading notes (9m)</b> to hit today's target.</span>
+      <button type="button" class="btn btn-yellow btn-xs" style="margin-top:4px;width:100%" onclick="switchView('player');setQuad(1)">Resume Lesson →</button>
+    </div>
+  </aside>
+
+  <!-- Main Workspace Area -->
+  <main class="lms-main">
+    <!-- Top Utility Bar -->
+    <div class="lms-topbar">
+      <div>
+        <h1 id="view-title" style="font-size:22px">Good afternoon, Arsh 👋</h1>
+        <p id="view-sub" style="font-size:13px;color:var(--muted)">Pick up right where you left off—or jump straight to any UGC quadrant below.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <label class="lms-search" aria-label="Search lessons, notes, or transcripts">
+          <span>🔍</span>
+          <input type="search" id="global-search" placeholder="Jump to module, transcript, or concept…" oninput="filterQuickJump(this.value)">
+          <kbd>⌘K</kbd>
+        </label>
+        <div class="tabs" style="margin:0">
+          <button type="button" class="tab" id="top-tab-dashboard" aria-selected="true" onclick="switchView('dashboard')">Dashboard</button>
+          <button type="button" class="tab" id="top-tab-player" aria-selected="false" onclick="switchView('player')">Split-Screen Player</button>
+          <button type="button" class="tab" id="top-tab-courses" aria-selected="false" onclick="switchView('courses')">My Courses (3)</button>
+          <button type="button" class="tab" id="top-tab-live" aria-selected="false" onclick="switchView('live')">Live &amp; Recordings</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         VIEW 1: HIGH-DENSITY DASHBOARD (Replaces sparse 2-scroll dashboard)
+         ==================================================================== -->
+    <div id="view-dashboard">
+      <div class="bento-grid">
+        <!-- Left Primary Column -->
+        <div class="bento-col">
+          <!-- Active Course Hero Card with Direct 4-Quadrant Launchers -->
+          <div class="continue-banner">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                <span class="eyebrow" style="background:rgba(255,255,255,.18);color:#fff">Continue · Module 1 of 23</span>
+                <span style="font-size:12px;color:var(--yellow);font-weight:800">● 18% Module 1 complete · 12m spent today</span>
+              </div>
+              <h2>Online counselling course</h2>
+              <p>Module 1: Online higher education fundamentals · Last stopped at <b>00:47</b> in Unit 1 Video Lecture</p>
+              <div class="quad-pills" aria-label="UGC Four Quadrants quick launch">
+                <button type="button" class="quad-pill" onclick="switchView('player');setQuad(0)">
+                  <small>Q1 · e-Tutorial</small>
+                  <b>▶ Video: Unit 1</b>
+                  <span>Resume 00:47 · 17m</span>
+                </button>
+                <button type="button" class="quad-pill" onclick="switchView('player');setQuad(1)">
+                  <small>Q2 · e-Content</small>
+                  <b>📄 Reading notes</b>
+                  <span>9 min · Key summary</span>
+                </button>
+                <button type="button" class="quad-pill" onclick="switchView('player');setQuad(2)">
+                  <small>Q2 · Module Book</small>
+                  <b>📘 PDF Book (26p)</b>
+                  <span>33 min · Annotate</span>
+                </button>
+                <button type="button" class="quad-pill" onclick="switchView('player');setQuad(3)">
+                  <small>Q4 · Assessment</small>
+                  <b>⚡ Self-check &amp; Lab</b>
+                  <span>8 Qs + 1-min pitch</span>
+                </button>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+              <button type="button" class="btn btn-yellow" onclick="switchView('player')">Resume at 00:47 →</button>
+              <button type="button" class="btn btn-ghost btn-sm" onclick="switchView('player');setQuad(4)">Practice 1-min MBA pitch 🎙</button>
+            </div>
+          </div>
+
+          <!-- Next Up Queue + Module Progress Strip (Eliminates empty whitespace under My Courses) -->
+          <div class="bento-card">
+            <div class="bento-head">
+              <h3>Up next in Module 1: Online higher education fundamentals</h3>
+              <span style="font-size:12px;color:var(--muted);font-weight:700">1 of 5 completed · Est. 1h 05m remaining</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:7px">
+              <div class="lesson-row" onclick="switchView('player');setQuad(0)">
+                <div class="lesson-row-left">
+                  <span class="q-badge q-1">Q1 · Video</span>
+                  <div>
+                    <b style="font-size:13.5px">Video lecture: Unit 1, Foundations</b>
+                    <div style="font-size:12px;color:var(--muted)">17 min · In progress (resumes at 00:47) · 11 min spent</div>
+                  </div>
+                </div>
+                <span class="btn btn-primary btn-xs">Resume ▶</span>
+              </div>
+              <div class="lesson-row" onclick="switchView('player');setQuad(1)">
+                <div class="lesson-row-left">
+                  <span class="q-badge q-2">Q2 · Reading</span>
+                  <div>
+                    <b style="font-size:13.5px">Reading notes: Online, ODL/Distance &amp; Regular modes</b>
+                    <div style="font-size:12px;color:var(--muted)">9 min · Includes 1-minute compliance checklist</div>
+                  </div>
+                </div>
+                <span class="btn btn-outline btn-xs">Read →</span>
+              </div>
+              <div class="lesson-row" onclick="switchView('player');setQuad(2)">
+                <div class="lesson-row-left">
+                  <span class="q-badge q-2">Q2 · PDF Book</span>
+                  <div>
+                    <b style="font-size:13.5px">Module book (PDF): Counsellor Course Book Series — Part A</b>
+                    <div style="font-size:12px;color:var(--muted)">33 min · 26 pages · Downloadable &amp; searchable</div>
+                  </div>
+                </div>
+                <span class="btn btn-outline btn-xs">Open PDF →</span>
+              </div>
+              <div class="lesson-row" onclick="switchView('player');setQuad(3)">
+                <div class="lesson-row-left">
+                  <span class="q-badge q-4">Q4 · Quiz</span>
+                  <div>
+                    <b style="font-size:13.5px">Self-check quiz: Online higher education fundamentals</b>
+                    <div style="font-size:12px;color:var(--muted)">8 questions · No time limit · Instant explanations</div>
+                  </div>
+                </div>
+                <span class="btn btn-outline btn-xs">Start Quiz →</span>
+              </div>
+              <div class="lesson-row" onclick="switchView('player');setQuad(4)">
+                <div class="lesson-row-left">
+                  <span class="q-badge q-3">Q4 · Practice</span>
+                  <div>
+                    <b style="font-size:13.5px">Practice activity: Explain three MBA modes in one minute</b>
+                    <div style="font-size:12px;color:var(--muted)">15 min · New: Interactive 60s timer &amp; compliance self-audit</div>
+                  </div>
+                </div>
+                <span class="btn btn-outline btn-xs">Practice 🎙</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- New Feature: Skill & Compliance Readiness Snapshot -->
+          <div class="bento-card" style="background:linear-gradient(90deg,#F7F5FF,#EFFBF9)">
+            <div class="bento-head">
+              <h3>✨ New: Counsellor Readiness &amp; UGC Compliance Tracker</h3>
+              <span class="eyebrow" style="background:#fff">Auto-updated from quizzes</span>
+            </div>
+            <div class="grid-3" style="gap:10px">
+              <div style="background:#fff;padding:11px;border-radius:10px;border:1px solid var(--line)">
+                <small style="color:var(--muted);font-weight:700;font-size:11px">UGC / DEB Rules</small>
+                <b style="display:block;font-size:16px;color:var(--violet);margin-top:2px">In Progress</b>
+                <span style="font-size:11.5px;color:var(--muted)">Online vs ODL distinction</span>
+              </div>
+              <div style="background:#fff;padding:11px;border-radius:10px;border:1px solid var(--line)">
+                <small style="color:var(--muted);font-weight:700;font-size:11px">4-Quadrant Mastery</small>
+                <b style="display:block;font-size:16px;color:var(--teal);margin-top:2px">Watch · Read · Ask · Test</b>
+                <span style="font-size:11.5px;color:var(--muted)">1/4 completed in Mod 1</span>
+              </div>
+              <div style="background:#fff;padding:11px;border-radius:10px;border:1px solid var(--line)">
+                <small style="color:var(--muted);font-weight:700;font-size:11px">1-Min Pitch Practice</small>
+                <b style="display:block;font-size:16px;color:var(--coral);margin-top:2px">Pending Lab</b>
+                <span style="font-size:11.5px;color:var(--muted)">Explain 3 MBA modes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Compact Column (Consolidates Stats, Live Classes, Assignments, Announcements) -->
+        <div class="bento-col">
+          <!-- Compact 4-Stat Strip -->
+          <div class="grid-2" style="gap:10px">
+            <div class="bento-card" style="padding:12px 14px;gap:2px">
+              <span style="font-size:11.5px;color:var(--muted);font-weight:700">Courses in progress</span>
+              <div style="display:flex;justify-content:space-between;align-items:baseline">
+                <b style="font-size:22px;font-family:Poppins,sans-serif">1</b>
+                <span style="font-size:11px;color:var(--violet);font-weight:800">23 modules</span>
+              </div>
+            </div>
+            <div class="bento-card" style="padding:12px 14px;gap:2px">
+              <span style="font-size:11.5px;color:var(--muted);font-weight:700">Time learned</span>
+              <div style="display:flex;justify-content:space-between;align-items:baseline">
+                <b style="font-size:22px;font-family:Poppins,sans-serif">42 min</b>
+                <span style="font-size:11px;color:var(--teal);font-weight:800">+12m today</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Consolidated Live & Recordings Feed (No more dead empty box!) -->
+          <div class="bento-card">
+            <div class="bento-head">
+              <h3>((•)) Live Classes &amp; Recordings</h3>
+              <button type="button" class="btn btn-outline btn-xs" onclick="switchView('live')">All sessions →</button>
+            </div>
+            <div style="background:var(--violet-soft);border-radius:10px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px">
+              <div>
+                <span style="font-size:10.5px;font-weight:800;color:var(--violet);text-transform:uppercase">Next Cohort Office Hours</span>
+                <b style="display:block;font-size:13px">Counselling Roleplay: Handling Fee &amp; UGC Queries</b>
+                <span style="font-size:11.5px;color:var(--muted)">Thu, 6:00 PM IST · With Walnut Academy Faculty</span>
+              </div>
+              <button type="button" class="btn btn-primary btn-xs" onclick="this.textContent='Added ✓'">+ Calendar</button>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;margin-top:2px">
+              <div style="font-size:11.5px;font-weight:800;color:var(--muted)">Recent Past Sessions (with instant notes)</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:12.5px;padding:6px 8px;background:var(--bg-subtle);border-radius:8px">
+                <div><b>Office hours: deploying your first model</b><div style="font-size:11px;color:var(--muted)">Arjun Mehta · 1h 15m</div></div>
+                <button type="button" class="btn btn-outline btn-xs" onclick="switchView('live')">Summary &amp; Deck</button>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:12.5px;padding:6px 8px;background:var(--bg-subtle);border-radius:8px">
+                <div><b>Live clinic: window functions in practice</b><div style="font-size:11px;color:var(--muted)">Priya Raman · 1h</div></div>
+                <button type="button" class="btn btn-outline btn-xs" onclick="switchView('live')">Summary &amp; Deck</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actionable Assignments & Announcements -->
+          <div class="bento-card">
+            <div class="bento-head">
+              <h3>☑ Action Items &amp; Announcements</h3>
+              <span class="q-badge q-4">1 Practice Task</span>
+            </div>
+            <div style="padding:10px 12px;border:1px solid var(--line);border-radius:10px;display:flex;justify-content:space-between;align-items:center;gap:10px">
+              <div>
+                <b style="font-size:13px">Explain three MBA modes in one minute</b>
+                <div style="font-size:11.5px;color:var(--muted)">Module 1 · Unlocks Module 2 badge upon completion</div>
+              </div>
+              <button type="button" class="btn btn-primary btn-xs" onclick="switchView('player');setQuad(4)">Start →</button>
+            </div>
+            <div style="padding:10px 12px;background:var(--bg-subtle);border-radius:10px;font-size:12.5px">
+              <div style="display:flex;justify-content:space-between;color:var(--muted);font-size:11px;font-weight:700">
+                <span>📢 Walnut Data Tech</span><span>Pinned</span>
+              </div>
+              <b style="display:block;margin-top:2px">Welcome to Walnut LMS</b>
+              <p style="color:var(--muted);font-size:12px;margin-top:2px">Every module follows the UGC Four-Quadrant model: Watch (Q1), Read (Q2), Ask (Q3) and Test (Q4).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         VIEW 2: SPLIT-SCREEN COURSE PLAYER (Fixes Screenshots 04–11)
+         ==================================================================== -->
+    <div id="view-player" hidden>
+      <!-- Compact Single-Line Course & Module Switcher (Replaces huge top cards & quadrant boxes) -->
+      <div class="player-header">
+        <div class="player-breadcrumb">
+          <a href="#dashboard" onclick="switchView('dashboard');return false" style="font-weight:800">← Dashboard</a>
+          <span style="color:var(--muted)">/</span>
+          <span>Online counselling course</span>
+          <span style="color:var(--muted)">/</span>
+          <select id="module-select" aria-label="Select module" onchange="selectModule(this.value)">
+            <option value="0">Module 1 of 23: Online higher education fundamentals (1h 22m)</option>
+            <option value="1">Module 2 of 23: UGC, DEB, recognition and compliance (1h 15m)</option>
+            <option value="2">Module 3 of 23: Understanding university types (1h 04m)</option>
+            <option value="3">Module 4 of 23: Programme master training (1h 18m)</option>
+          </select>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span id="mod-progress-pill" style="font-size:12px;font-weight:800;color:var(--violet);background:var(--violet-soft);padding:5px 10px;border-radius:999px">Lesson 1 of 5 · 20%</span>
+          <button type="button" class="btn btn-outline btn-xs" onclick="markCurrentComplete()" id="complete-btn">✓ Mark as complete</button>
+        </div>
+      </div>
+
+      <div class="player-layout">
+        <!-- Left Stage: Instant Above-the-Fold Content with 1-Click Quadrant Subtabs -->
+        <div class="player-stage">
+          <div class="quad-Subtabs" role="tablist" aria-label="Module 1 Lessons by UGC Quadrant">
+            <button type="button" class="quad-tab active" data-q="0" onclick="setQuad(0)">
+              <span class="done-dot" id="dot-0" hidden></span>
+              <span>Q1 · Video Lecture (17m)</span>
+            </button>
+            <button type="button" class="quad-tab" data-q="1" onclick="setQuad(1)">
+              <span class="done-dot" id="dot-1" hidden></span>
+              <span>Q2 · Reading Notes (9m)</span>
+            </button>
+            <button type="button" class="quad-tab" data-q="2" onclick="setQuad(2)">
+              <span class="done-dot" id="dot-2" hidden></span>
+              <span>Q2 · Module Book PDF (33m)</span>
+            </button>
+            <button type="button" class="quad-tab" data-q="3" onclick="setQuad(3)">
+              <span class="done-dot" id="dot-3" hidden></span>
+              <span>Q4 · Self-Check Quiz (8 Qs)</span>
+            </button>
+            <button type="button" class="quad-tab" data-q="4" onclick="setQuad(4)">
+              <span class="done-dot" id="dot-4" hidden></span>
+              <span>Q4 · 1-Min Pitch Activity (15m)</span>
+            </button>
+          </div>
+
+          <!-- Stage 0: Video Lecture + Key Notes Side-by-Side / Below without scrolling past curriculum -->
+          <div class="stage-viewport" id="quad-pane-0">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+              <div>
+                <span class="q-badge q-1">Quadrant I · e-Tutorial · Lesson 1 of 111</span>
+                <h2 style="font-size:20px;margin-top:4px">Video lecture: Unit 1, Foundations</h2>
+              </div>
+              <div style="display:flex;gap:6px">
+                <button type="button" class="btn btn-outline btn-xs" onclick="cycleSpeed(this)">Speed: 1.0x</button>
+                <button type="button" class="btn btn-outline btn-xs" onclick="setDock('notes')">+ Timestamp Note</button>
+              </div>
+            </div>
+
+            <div class="video-box">
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#D9D1FF">
+                <span>Walnut LMS · Unit 1: How Online Degrees Work</span>
+                <span>CC · HD 1080p</span>
+              </div>
+              <div class="video-box-center">
+                <button type="button" class="play-circle" onclick="togglePlay(this)" aria-label="Play video">▶</button>
+                <span id="play-status" style="font-size:13px;font-weight:700;background:rgba(0,0,0,.45);padding:4px 12px;border-radius:999px">Resume from 00:47 / 17:00</span>
+              </div>
+              <div>
+                <div style="font-size:11px;color:#D9D1FF;margin-bottom:6px;font-weight:700">Interactive Video Chapters (Click to jump):</div>
+                <div class="video-chapters">
+                  <button type="button" class="chap-chip active" onclick="jumpChapter(this,'00:47 — What is an online degree?')">00:00 Intro &amp; Definition</button>
+                  <button type="button" class="chap-chip" onclick="jumpChapter(this,'04:15 — Online vs ODL/Distance vs Regular')">04:15 Three Modes Compared</button>
+                  <button type="button" class="chap-chip" onclick="jumpChapter(this,'09:30 — Synchronous vs Asynchronous Learning')">09:30 Live vs Recorded</button>
+                  <button type="button" class="chap-chip" onclick="jumpChapter(this,'13:10 — The UGC Four-Quadrant Model')">13:10 Four-Quadrant Model</button>
+                  <button type="button" class="chap-chip" onclick="jumpChapter(this,'15:40 — 1-Minute Explanation &amp; Compliance')">15:40 Compliance Rules</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Compact Expandable Lesson Summary right underneath video -->
+            <div class="reading-sheet">
+              <div class="takeaway-box">
+                <b style="font-size:13.5px;color:var(--violet)">🎯 What you will be able to do after this video</b>
+                <ul style="margin:0;padding-left:18px;font-size:13px;display:flex;flex-direction:column;gap:4px">
+                  <li>Explain in simple words what an online degree is and who it suits.</li>
+                  <li>Tell the difference between <b>Online</b>, <b>ODL/Distance</b>, and <b>Regular</b> education.</li>
+                  <li>Describe the UGC Four-Quadrant model (<b>Watch, Read, Ask, Test</b>).</li>
+                  <li>Explain the three modes to a working professional in ~1 minute without a script.</li>
+                </ul>
+              </div>
+              <div class="compliance-alert">
+                <b style="display:block;margin-bottom:4px">⚠️ Counsellor Compliance Check</b>
+                Never rank one mode as universally better than another. Never treat <b>ODL/Distance</b> and <b>Online</b> as the same thing. Never promise how live classes or exams work before checking that programme's current rules.
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 1: Reading Notes (Structured 2-Column Reader with Key Takeaways) -->
+          <div class="stage-viewport" id="quad-pane-1" hidden>
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+              <div>
+                <span class="q-badge q-2">Quadrant II · e-Content · Lesson 2 of 111</span>
+                <h2 style="font-size:20px;margin-top:4px">Reading notes: Online higher education fundamentals</h2>
+              </div>
+              <span style="font-size:12px;color:var(--muted);font-weight:700">⏱ 9 min read · 12 sec spent</span>
+            </div>
+
+            <div class="reading-sheet">
+              <div class="reading-prose">
+                <h4>Chapter 1: What is an online degree programme?</h4>
+                <p>An <b>online degree programme</b> is a full degree programme that a university delivers mainly through digital systems instead of a physical classroom. The learner logs in to the university's learning platform to watch lectures, read study material, submit assignments, take assessments and ask for help.</p>
+                <h4>Why this module matters</h4>
+                <p>Almost every learner begins with the same question: <i>"How does an online degree actually work?"</i> Your answer decides whether the learner trusts the rest of the conversation. This module gives you the knowledge behind that answer, so you can explain it in your own words rather than from a script.</p>
+                <h4>The Four-Quadrant Model</h4>
+                <p>Remember it as <b>Watch, Read, Ask, Test</b>: Quadrant I e-Tutorial, Quadrant II e-Content, Quadrant III Discussion, Quadrant IV Assessment. Use the idea in simple words with a learner; the label is for you.</p>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div class="takeaway-box">
+                  <b style="font-size:13.5px;color:var(--violet)">⚡ The One-Minute Explanation</b>
+                  <ol style="margin:0;padding-left:18px;font-size:13px;display:flex;flex-direction:column;gap:5px">
+                    <li><b>Name the three modes</b> (Regular, ODL/Distance, Online).</li>
+                    <li><b>Give one line on each</b> (Campus vs Self-study + centres vs Full digital LMS).</li>
+                    <li><b>Link to the learner's schedule</b> (Working professional flexibility).</li>
+                    <li><b>Suggest a clear next step</b> (Review syllabus &amp; eligibility).</li>
+                  </ol>
+                </div>
+                <div class="compliance-alert">
+                  <b>Golden Rule:</b> Never describe ODL/Distance and Online as the same thing, and never promise exam/live-class formats without checking current university regulations.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 2: Module Book PDF (Clean Split Reader) -->
+          <div class="stage-viewport" id="quad-pane-2" hidden>
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+              <div>
+                <span class="q-badge q-2">Quadrant II · e-Content (PDF) · Lesson 3 of 111</span>
+                <h2 style="font-size:20px;margin-top:4px">Module book (PDF): Online Higher Education Fundamentals</h2>
+              </div>
+              <div style="display:flex;gap:8px">
+                <button type="button" class="btn btn-outline btn-xs" onclick="alert('Opens full-screen PDF viewer')">↗ Open full screen</button>
+                <button type="button" class="btn btn-primary btn-xs" onclick="alert('Downloading Module 1 PDF (26 pages)...')">⬇ Download PDF (26p)</button>
+              </div>
+            </div>
+
+            <div class="pdf-mock">
+              <div class="pdf-toolbar">
+                <span>📘 Module 1 — Online Higher Education Fundamentals.pdf</span>
+                <div style="display:flex;gap:10px;align-items:center">
+                  <button type="button" class="btn btn-ghost btn-xs" onclick="setPdfPage(1)">Page 1: Cover</button>
+                  <button type="button" class="btn btn-ghost btn-xs" onclick="setPdfPage(2)">Page 2: Comparison Table</button>
+                  <button type="button" class="btn btn-ghost btn-xs" onclick="setPdfPage(3)">Page 3: 4-Quadrant Guide</button>
+                </div>
+              </div>
+              <div class="pdf-body">
+                <div class="pdf-thumbs">
+                  <div class="pdf-thumb active" id="pthumb-1" onclick="setPdfPage(1)">1 · Cover Page</div>
+                  <div class="pdf-thumb" id="pthumb-2" onclick="setPdfPage(2)">2 · 3 Modes Matrix</div>
+                  <div class="pdf-thumb" id="pthumb-3" onclick="setPdfPage(3)">3 · UGC Quadrants</div>
+                </div>
+                <div class="pdf-page" id="pdf-page-content">
+                  <span class="eyebrow">Counsellor Course Book Series · Part A — Core Course</span>
+                  <h3 style="font-size:22px;color:var(--violet);margin-top:4px">MODULE 01: Online Higher Education Fundamentals</h3>
+                  <p style="color:var(--muted)">How online degrees work, how they differ from ODL/Distance and Regular programmes, and how to explain them clearly and compliantly to prospective learners.</p>
+                  <div class="grid-3" style="margin-top:8px">
+                    <div class="card" style="padding:12px"><b>Regular Mode</b><span style="font-size:12px;color:var(--muted)">Daily in-person classes on campus; fixed timetable.</span></div>
+                    <div class="card" style="padding:12px"><b>ODL / Distance</b><span style="font-size:12px;color:var(--muted)">Printed/digital self-learning material + learner support centres.</span></div>
+                    <div class="card" style="padding:12px"><b>Online Mode</b><span style="font-size:12px;color:var(--muted)">LMS-driven 4-Quadrant digital delivery + proctored online exams.</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 3: Interactive Self-Check Quiz (Inline instant feedback instead of extra page loads) -->
+          <div class="stage-viewport" id="quad-pane-3" hidden>
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+              <div>
+                <span class="q-badge q-4">Quadrant IV · Assessment · Lesson 4 of 111</span>
+                <h2 style="font-size:20px;margin-top:4px">Self-check: Online higher education fundamentals</h2>
+              </div>
+              <span style="font-size:12px;color:var(--violet);font-weight:800">8 Questions · No time limit · Unlimited attempts</span>
+            </div>
+
+            <div class="quiz-card">
+              <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:800;color:var(--muted)">
+                <span id="q-counter">QUESTION 1 OF 3 (SAMPLE INTERACTIVE PREVIEW)</span>
+                <span>Not part of final score · Instant explanation</span>
+              </div>
+              <h3 id="q-title" style="font-size:16.5px">1. A working professional asks if an Online MBA and an ODL (Distance) MBA are the same thing. How should a compliant counsellor respond?</h3>
+              <div id="q-options" style="display:flex;flex-direction:column;gap:8px">
+                <button type="button" class="quiz-opt" onclick="answerQuiz(this,false,'Never treat ODL/Distance and Online as the same mode.')">A) Tell them yes, both are identical online degrees with no campus visits.</button>
+                <button type="button" class="quiz-opt" onclick="answerQuiz(this,true,'Correct! Online programmes deliver learning through the LMS across 4 quadrants, while ODL relies on self-learning materials and regional learner support centres—and you should explain both neutrally without ranking one above the other.')">B) Explain clearly how Online (LMS-based digital delivery) and ODL (self-study + support centres) differ, without ranking one mode as universally better.</button>
+                <button type="button" class="quiz-opt" onclick="answerQuiz(this,false,'Compliance rule: Never rank one mode as universally better than another.')">C) Tell them Online is always superior to ODL and Regular degrees.</button>
+              </div>
+              <div id="q-feedback" hidden style="padding:10px 12px;border-radius:8px;font-size:13px;font-weight:700"></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px">
+                <button type="button" class="btn btn-outline btn-xs" onclick="nextQuizQuestion()">Try Next Sample Question →</button>
+                <span style="font-size:12px;color:var(--muted)">Full 8-question bank active</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 4: Imagined New Feature — Interactive 1-Minute Pitch Practice & Compliance Checker -->
+          <div class="stage-viewport" id="quad-pane-4" hidden>
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+              <div>
+                <span class="q-badge q-3">Quadrant IV · Practice Lab · Lesson 5 of 111</span>
+                <h2 style="font-size:20px;margin-top:4px">Practice activity: Explain three MBA modes in one minute</h2>
+              </div>
+              <span class="eyebrow">✨ New Interactive Roleplay Lab</span>
+            </div>
+
+            <div class="reading-sheet">
+              <div class="quiz-card" style="background:#fff">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <b>🎙 60-Second Counsellor Pitch Simulator</b>
+                  <span id="timer-display" style="font-family:Poppins,sans-serif;font-size:18px;font-weight:700;color:var(--violet)">01:00</span>
+                </div>
+                <p style="font-size:13px;color:var(--muted)">Scenario: A working manager with 4 years of experience asks: <i>"Should I do a Regular, Distance, or Online MBA?"</i> Draft or speak your 1-minute response below:</p>
+                <textarea id="pitch-input" rows="4" style="width:100%;border:1.5px solid var(--line);border-radius:10px;padding:10px;font-family:inherit;font-size:13.5px" placeholder="Type your 4-move response here (or click Load Model Pitch to see an example)..." oninput="evaluatePitch()"></textarea>
+                <div style="display:flex;gap:8px;flex-wrap:wrap">
+                  <button type="button" class="btn btn-primary btn-xs" onclick="startPitchTimer(this)">⏱ Start 60s Timer</button>
+                  <button type="button" class="btn btn-outline btn-xs" onclick="loadSamplePitch()">✨ Load Model Pitch</button>
+                </div>
+              </div>
+
+              <div class="takeaway-box" style="background:#fff;border:1.5px solid var(--line);border-left:4px solid var(--teal)">
+                <b style="font-size:13.5px">Live 4-Move &amp; Compliance Auto-Check</b>
+                <div style="display:flex;flex-direction:column;gap:6px;font-size:12.5px" id="rubric-list">
+                  <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="chk-1"> 1. Named all 3 modes (Regular, ODL/Distance, Online)</label>
+                  <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="chk-2"> 2. Explained how each works in plain words</label>
+                  <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="chk-3"> 3. Connected to working professional's schedule</label>
+                  <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="chk-4"> 4. Passed compliance (no ranking modes, no conflating ODL &amp; Online)</label>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" style="margin-top:6px" onclick="markCurrentComplete();alert('Practice activity submitted & marked complete!')">Submit Activity ✓</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sticky Player Footer Navigation -->
+          <div class="player-footer">
+            <button type="button" class="btn btn-outline btn-sm" id="prev-lesson-btn" onclick="stepQuad(-1)">← Previous</button>
+            <div style="font-size:12px;color:var(--muted);font-weight:700">
+              Tip: Use <kbd style="background:#fff;border:1px solid var(--line);padding:1px 5px;border-radius:4px">1</kbd>–<kbd style="background:#fff;border:1px solid var(--line);padding:1px 5px;border-radius:4px">5</kbd> to switch Quadrants without scrolling
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" id="next-lesson-btn" onclick="stepQuad(1)">Next: Reading notes →</button>
+          </div>
+        </div>
+
+        <!-- Right Docked Panel: Curriculum + Smart Notes + Q3 Discussion / AI Tutor -->
+        <aside class="player-dock" aria-label="Course tools and syllabus">
+          <div class="dock-tabs">
+            <button type="button" class="dock-tab active" id="dtab-syllabus" onclick="setDock('syllabus')">Syllabus (23)</button>
+            <button type="button" class="dock-tab" id="dtab-notes" onclick="setDock('notes')">My Notes</button>
+            <button type="button" class="dock-tab" id="dtab-qa" onclick="setDock('qa')">Q3 Ask / AI</button>
+          </div>
+
+          <!-- Dock Tab 1: Syllabus -->
+          <div class="dock-body" id="dpane-syllabus">
+            <div class="mod-acc">
+              <button type="button" class="mod-acc-head">
+                <span>Module 1: Online higher ed</span>
+                <span style="font-size:11px;color:var(--violet)" id="dock-mod1-count">0/5</span>
+              </button>
+              <div class="mod-acc-list">
+                <button type="button" class="mod-item active" data-mitem="0" onclick="setQuad(0)">
+                  <span>▶ 1.1 Video: Unit 1 Foundations</span><small>17m</small>
+                </button>
+                <button type="button" class="mod-item" data-mitem="1" onclick="setQuad(1)">
+                  <span>📄 1.2 Reading notes</span><small>9m</small>
+                </button>
+                <button type="button" class="mod-item" data-mitem="2" onclick="setQuad(2)">
+                  <span>📘 1.3 Module book (PDF)</span><small>33m</small>
+                </button>
+                <button type="button" class="mod-item" data-mitem="3" onclick="setQuad(3)">
+                  <span>⚡ 1.4 Self-check quiz</span><small>8m</small>
+                </button>
+                <button type="button" class="mod-item" data-mitem="4" onclick="setQuad(4)">
+                  <span>🎙 1.5 Practice: 3 MBA modes</span><small>15m</small>
+                </button>
+              </div>
+            </div>
+
+            <div class="mod-acc">
+              <button type="button" class="mod-acc-head" onclick="this.nextElementSibling.hidden=!this.nextElementSibling.hidden">
+                <span>Module 2: UGC, DEB &amp; compliance</span>
+                <span style="font-size:11px;color:var(--muted)">0/5 · 1h 15m</span>
+              </button>
+              <div class="mod-acc-list" hidden>
+                <button type="button" class="mod-item" onclick="setQuad(1)"><span>📄 2.1 UGC Entitled vs Recognised</span><small>14m</small></button>
+                <button type="button" class="mod-item" onclick="setQuad(2)"><span>📘 2.2 DEB Verification Checklist</span><small>25m</small></button>
+                <button type="button" class="mod-item" onclick="setQuad(3)"><span>⚡ 2.3 Compliance Quiz</span><small>10m</small></button>
+              </div>
+            </div>
+
+            <div class="mod-acc">
+              <button type="button" class="mod-acc-head" onclick="this.nextElementSibling.hidden=!this.nextElementSibling.hidden">
+                <span>Module 3: University types</span>
+                <span style="font-size:11px;color:var(--muted)">0/5 · 1h 04m</span>
+              </button>
+              <div class="mod-acc-list" hidden>
+                <button type="button" class="mod-item" onclick="setQuad(0)"><span>▶ 3.1 Central, State, Deemed &amp; Private</span><small>19m</small></button>
+              </div>
+            </div>
+
+            <div class="mod-acc">
+              <button type="button" class="mod-acc-head" onclick="this.nextElementSibling.hidden=!this.nextElementSibling.hidden">
+                <span>Module 4: Programme master training</span>
+                <span style="font-size:11px;color:var(--muted)">0/5 · 1h 18m</span>
+              </button>
+              <div class="mod-acc-list" hidden>
+                <button type="button" class="mod-item" onclick="setQuad(0)"><span>▶ 4.1 Matching Learner Profiles</span><small>21m</small></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dock Tab 2: Timestamped Smart Notes -->
+          <div class="dock-body" id="dpane-notes" hidden>
+            <div style="font-size:12px;color:var(--muted)">Take notes synced to the video timestamp or reading section:</div>
+            <div style="display:flex;gap:6px">
+              <input type="text" id="note-text" placeholder="Add a note at 00:47…" style="flex:1;border:1.5px solid var(--line);border-radius:8px;padding:6px 10px;font-family:inherit;font-size:12.5px">
+              <button type="button" class="btn btn-primary btn-xs" onclick="addSmartNote()">Save</button>
+            </div>
+            <div id="notes-feed" style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+              <div style="background:var(--bg-subtle);padding:8px 10px;border-radius:8px;font-size:12px;border-left:3px solid var(--violet)">
+                <b style="color:var(--violet)">00:47 · Unit 1 Video</b>
+                <p style="margin-top:2px">4 Quadrants = Watch (e-Tutorial), Read (e-Content), Ask (Discussion), Test (Assessment).</p>
+              </div>
+              <div style="background:var(--bg-subtle);padding:8px 10px;border-radius:8px;font-size:12px;border-left:3px solid var(--coral)">
+                <b style="color:var(--coral)">Compliance Rule</b>
+                <p style="margin-top:2px">Never treat ODL/Distance and Online as identical; never rank one mode above another.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dock Tab 3: Quadrant III Discussion & AI Tutor -->
+          <div class="dock-body" id="dpane-qa" hidden>
+            <div style="background:var(--violet-soft);padding:10px;border-radius:10px;font-size:12px">
+              <b style="color:var(--violet)">🤖 Walnut AI Study Coach (Q3 · Ask)</b>
+              <p style="margin-top:3px;color:var(--text)">Ask anything about Module 1 or test your explanation of Online vs ODL degrees.</p>
+            </div>
+            <div id="qa-feed" style="display:flex;flex-direction:column;gap:8px;font-size:12px">
+              <div style="background:var(--bg-subtle);padding:8px 10px;border-radius:8px">
+                <b>Peer Question · Riya S.</b>
+                <p style="color:var(--muted);margin-top:2px">Can an ODL learner attend live LMS classes like an Online degree learner?</p>
+                <p style="color:var(--violet);font-weight:700;margin-top:4px">Faculty Reply: Always check the specific university's current DEB-approved programme structure before promising live class formats.</p>
+              </div>
+            </div>
+            <div style="display:flex;gap:6px;margin-top:auto">
+              <input type="text" id="qa-input" placeholder="Ask a question on Module 1…" style="flex:1;border:1.5px solid var(--line);border-radius:8px;padding:6px 10px;font-family:inherit;font-size:12.5px">
+              <button type="button" class="btn btn-primary btn-xs" onclick="askCoach()">Ask</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         VIEW 3: MY LEARNING & CATALOG (Fixes sparse Screenshot 03)
+         ==================================================================== -->
+    <div id="view-courses" hidden>
+      <div class="bento-card">
+        <div class="bento-head">
+          <div>
+            <h3>Enrolled &amp; Recommended Courses</h3>
+            <p style="font-size:12.5px;color:var(--muted)">Every course shows module-level 4-Quadrant progress, time spent and verifiable certificate status.</p>
+          </div>
+          <span class="eyebrow">Lifetime Access</span>
+        </div>
+
+        <div class="grid-3">
+          <div class="card" style="background:#fff;justify-content:space-between">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span class="q-badge q-1">In Progress · 23 Modules</span>
+                <span style="font-size:12px;font-weight:800;color:var(--violet)">Started 13 Oct 2026</span>
+              </div>
+              <h3 style="font-size:17px">Online counselling course</h3>
+              <p style="font-size:13px;color:var(--muted)">With Walnut Academy · 111 lessons across UGC regulations, university types, and ethical student advising.</p>
+              <div style="background:var(--bg-subtle);padding:8px 10px;border-radius:8px;font-size:12px">
+                <div style="display:flex;justify-content:space-between;font-weight:700"><span>Module 1 Progress</span><span>20% · 12m spent</span></div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" onclick="switchView('player')">Continue Course →</button>
+          </div>
+
+          <div class="card" style="background:#fff;justify-content:space-between">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span class="q-badge q-2">Recommended Track</span>
+                <span style="font-size:12px;font-weight:800;color:#0B8A77">14 Hours</span>
+              </div>
+              <h3 style="font-size:17px">Applied SQL &amp; Analytics for Admissions</h3>
+              <p style="font-size:13px;color:var(--muted)">Query enrolment funnels, track cohort retention and build automated reporting dashboards.</p>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" onclick="switchView('live')">View Past Clinics →</button>
+          </div>
+
+          <div class="card" style="background:#fff;justify-content:space-between">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span class="q-badge q-3">Skill Certificate</span>
+                <span style="font-size:12px;font-weight:800;color:#B45309">18 Hours</span>
+              </div>
+              <h3 style="font-size:17px">Machine Learning in Production</h3>
+              <p style="font-size:13px;color:var(--muted)">Deploy predictive student-success models and automated evaluation pipelines.</p>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" onclick="switchView('live')">View Office Hours →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         VIEW 4: LIVE CLASSES & RECORDINGS (Fixes Screenshots 12–13)
+         ==================================================================== -->
+    <div id="view-live" hidden>
+      <div class="bento-card">
+        <div class="bento-head">
+          <div>
+            <h3>Learn live with your instructors — or catch up with AI summaries &amp; slides</h3>
+            <p style="font-size:12.5px;color:var(--muted)">Even when a video recording is still processing, you get instant access to session slides, key Q&amp;A takeaways and "Notify me".</p>
+          </div>
+          <select style="font-family:inherit;font-size:13px;font-weight:700;padding:6px 12px;border-radius:8px;border:1.5px solid var(--line)">
+            <option>All courses (4 sessions)</option>
+            <option>Online counselling course</option>
+            <option>Machine learning in production</option>
+            <option>Applied SQL for analytics</option>
+          </select>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="lesson-row" style="background:var(--violet-soft);border-color:var(--violet)">
+            <div class="lesson-row-left">
+              <span class="q-badge q-1">UPCOMING · THU 6:00 PM IST</span>
+              <div>
+                <b style="font-size:14.5px">Live Roleplay Clinic: Answering "Is an Online Degree Valid for Govt/PSU Jobs?"</b>
+                <div style="font-size:12px;color:var(--text)">Online counselling course · Hosted by Walnut Academy Lead Faculty · 60 min</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button type="button" class="btn btn-outline btn-xs" onclick="alert('Pre-session question submitted!')">Submit Question</button>
+              <button type="button" class="btn btn-primary btn-xs" onclick="this.textContent='Calendar RSVP ✓'">+ Add to Calendar</button>
+            </div>
+          </div>
+
+          <div class="lesson-row" style="background:#fff">
+            <div class="lesson-row-left">
+              <span class="q-badge q-2">17 OCT 2026 · 1h 15m</span>
+              <div>
+                <b style="font-size:14.5px">Office hours: deploying your first model</b>
+                <div style="font-size:12px;color:var(--muted)">Machine learning in production · Hosted by Arjun Mehta</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <span style="font-size:11.5px;color:var(--muted)">Video processing</span>
+              <button type="button" class="btn btn-outline btn-xs" onclick="alert('Opening session deck & key notes...')">📄 Slides &amp; Notes</button>
+              <button type="button" class="btn btn-primary btn-xs" onclick="this.textContent='Alert set 🔔'">🔔 Notify when ready</button>
+            </div>
+          </div>
+
+          <div class="lesson-row" style="background:#fff">
+            <div class="lesson-row-left">
+              <span class="q-badge q-2">10 OCT 2026 · 1h 00m</span>
+              <div>
+                <b style="font-size:14.5px">Live clinic: window functions in practice</b>
+                <div style="font-size:12px;color:var(--muted)">Applied SQL for analytics · Hosted by Priya Raman</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <button type="button" class="btn btn-outline btn-xs" onclick="alert('Downloading SQL workbook...')">💻 SQL Notebook</button>
+              <button type="button" class="btn btn-primary btn-xs" onclick="switchView('player')">▶ Watch Recording</button>
+            </div>
+          </div>
+
+          <div class="lesson-row" style="background:#fff">
+            <div class="lesson-row-left">
+              <span class="q-badge q-2">2 OCT 2026 · 1h 00m</span>
+              <div>
+                <b style="font-size:14.5px">Q&amp;A: building reliable pipelines</b>
+                <div style="font-size:12px;color:var(--muted)">Python for data engineering · Hosted by Priya Raman</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <button type="button" class="btn btn-outline btn-xs" onclick="alert('Opening Q&A transcript...')">📝 Q&amp;A Summary</button>
+              <button type="button" class="btn btn-primary btn-xs" onclick="switchView('player')">▶ Watch Recording</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+const VIEWS = ['dashboard', 'player', 'courses', 'live'];
+const TITLES = {
+  dashboard: ['Good afternoon, Arsh 👋', 'Pick up right where you left off—or jump straight to any UGC quadrant below.'],
+  player: ['Online counselling course · Split-Screen Player', 'Zero-scroll workspace: switch between Video, Reading, PDF Book, Quiz & Practice in one click.'],
+  courses: ['Your courses & skill tracks', 'Every course you are enrolled in, with 4-Quadrant progress and verifiable credentials.'],
+  live: ['Live classes, office hours & recordings', 'Join upcoming instructor clinics or review slides, notebooks and recordings.']
+};
+const NEXT_LABELS = [
+  'Next: Reading notes →',
+  'Next: Module book (PDF) →',
+  'Next: Self-check quiz →',
+  'Next: 1-Min Pitch Activity →',
+  'Finish Module 1 →'
+];
+let curQuad = 0;
+const completedQuads = new Set();
+
+function switchView(v) {
+  VIEWS.forEach(id => {
+    document.getElementById('view-' + id).hidden = (id !== v);
+    const topTab = document.getElementById('top-tab-' + id);
+    if (topTab) topTab.setAttribute('aria-selected', id === v);
+  });
+  document.querySelectorAll('.lms-nav-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.view === v);
+  });
+  if (TITLES[v]) {
+    document.getElementById('view-title').textContent = TITLES[v][0];
+    document.getElementById('view-sub').textContent = TITLES[v][1];
+  }
+}
+
+function setQuad(q) {
+  curQuad = Math.max(0, Math.min(4, q));
+  for (let i = 0; i < 5; i++) {
+    document.getElementById('quad-pane-' + i).hidden = (i !== curQuad);
+  }
+  document.querySelectorAll('.quad-tab').forEach(t => {
+    t.classList.toggle('active', Number(t.dataset.q) === curQuad);
+  });
+  document.querySelectorAll('[data-mitem]').forEach(m => {
+    m.classList.toggle('active', Number(m.dataset.mitem) === curQuad);
+  });
+  document.getElementById('prev-lesson-btn').disabled = (curQuad === 0);
+  document.getElementById('next-lesson-btn').textContent = NEXT_LABELS[curQuad];
+  updateProgressUI();
+}
+
+function stepQuad(delta) {
+  if (curQuad + delta > 4) {
+    completedQuads.add(curQuad);
+    updateProgressUI();
+    switchView('dashboard');
+    return;
+  }
+  setQuad(curQuad + delta);
+}
+
+function markCurrentComplete() {
+  completedQuads.add(curQuad);
+  const dot = document.getElementById('dot-' + curQuad);
+  if (dot) dot.hidden = false;
+  updateProgressUI();
+}
+
+function updateProgressUI() {
+  const pct = Math.max(20, completedQuads.size * 20);
+  document.getElementById('mod-progress-pill').textContent = `Lesson ${curQuad + 1} of 5 · ${pct}%`;
+  document.getElementById('dock-mod1-count').textContent = `${completedQuads.size}/5`;
+  const btn = document.getElementById('complete-btn');
+  if (completedQuads.has(curQuad)) {
+    btn.textContent = 'Completed ✓';
+    btn.style.background = 'var(--teal-soft)';
+    btn.style.color = '#065F46';
+    btn.style.borderColor = 'var(--teal)';
+  } else {
+    btn.textContent = '✓ Mark as complete';
+    btn.style.background = '';
+    btn.style.color = '';
+    btn.style.borderColor = '';
+  }
+}
+
+function setDock(tab) {
+  ['syllabus', 'notes', 'qa'].forEach(t => {
+    document.getElementById('dpane-' + t).hidden = (t !== tab);
+    document.getElementById('dtab-' + t).classList.toggle('active', t === tab);
+  });
+}
+
+function togglePlay(btn) {
+  const playing = btn.textContent === '⏸';
+  btn.textContent = playing ? '▶' : '⏸';
+  document.getElementById('play-status').textContent = playing ? 'Paused at 00:52 / 17:00' : 'Playing · 00:52 / 17:00 (1.0x)';
+}
+
+function jumpChapter(chip, label) {
+  document.querySelectorAll('.chap-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  document.getElementById('play-status').textContent = 'Playing · ' + label;
+}
+
+function cycleSpeed(btn) {
+  const speeds = ['1.0x', '1.25x', '1.5x', '2.0x'];
+  const cur = btn.textContent.replace('Speed: ', '');
+  const next = speeds[(speeds.indexOf(cur) + 1) % speeds.length];
+  btn.textContent = 'Speed: ' + next;
+}
+
+function setPdfPage(p) {
+  [1, 2, 3].forEach(i => document.getElementById('pthumb-' + i).classList.toggle('active', i === p));
+  const pages = {
+    1: `<span class="eyebrow">Counsellor Course Book Series · Part A — Core Course</span>
+        <h3 style="font-size:22px;color:var(--violet);margin-top:4px">MODULE 01: Online Higher Education Fundamentals</h3>
+        <p style="color:var(--muted)">How online degrees work, how they differ from ODL/Distance and Regular programmes, and how to explain them clearly and compliantly to prospective learners.</p>`,
+    2: `<span class="eyebrow">Page 2 of 26 · Comparison Matrix</span>
+        <h3 style="font-size:19px;margin-top:4px">Regular vs ODL/Distance vs Online Programmes</h3>
+        <p style="font-size:13px;color:var(--text)">• <b>Regular:</b> Classroom teaching on campus with fixed attendance.<br>• <b>ODL/Distance:</b> Self-learning material + regional study centres.<br>• <b>Online:</b> Full digital delivery via LMS across the 4 UGC Quadrants.</p>`,
+    3: `<span class="eyebrow">Page 3 of 26 · The UGC Four-Quadrant Model</span>
+        <h3 style="font-size:19px;margin-top:4px">Watch · Read · Ask · Test</h3>
+        <p style="font-size:13px;color:var(--text)">Quadrant I (e-Tutorial video), Quadrant II (e-Content reading & PDFs), Quadrant III (Discussion forum & live doubt clearing), Quadrant IV (Self-check quizzes & assignments).</p>`
+  };
+  document.getElementById('pdf-page-content').innerHTML = pages[p];
+}
+
+function answerQuiz(btn, ok, msg) {
+  document.querySelectorAll('#q-options .quiz-opt').forEach(b => b.classList.remove('correct', 'wrong'));
+  btn.classList.add(ok ? 'correct' : 'wrong');
+  const fb = document.getElementById('q-feedback');
+  fb.hidden = false;
+  fb.textContent = msg;
+  fb.style.background = ok ? 'var(--teal-soft)' : 'var(--coral-soft)';
+  fb.style.color = ok ? '#065F46' : '#991B1B';
+  if (ok) markCurrentComplete();
+}
+
+const SAMPLE_QS = [
+  {
+    q: '1. A working professional asks if an Online MBA and an ODL (Distance) MBA are the same thing. How should a compliant counsellor respond?',
+    opts: [
+      ['A) Tell them yes, both are identical online degrees with no campus visits.', false, 'Never treat ODL/Distance and Online as the same mode.'],
+      ['B) Explain clearly how Online (LMS-based digital delivery) and ODL (self-study + support centres) differ, without ranking one mode as universally better.', true, 'Correct! Explain each mode neutrally and accurately.'],
+      ['C) Tell them Online is always superior to ODL and Regular degrees.', false, 'Compliance rule: Never rank one mode as universally better than another.']
+    ]
+  },
+  {
+    q: '2. Which four components make up the UGC Four-Quadrant model in an Online degree programme?',
+    opts: [
+      ['A) Watch (e-Tutorial), Read (e-Content), Ask (Discussion), Test (Assessment)', true, 'Spot on! Watch, Read, Ask, Test cover Quadrants I to IV.'],
+      ['B) Prospectus, Admission Form, Fee Receipt, Degree Certificate', false, 'Those are administrative steps, not the 4 learning quadrants.'],
+      ['C) Only recorded videos and final annual exams', false, 'Online programmes include all four quadrants continuously.']
+    ]
+  }
+];
+let qIdx = 0;
+function nextQuizQuestion() {
+  qIdx = (qIdx + 1) % SAMPLE_QS.length;
+  const item = SAMPLE_QS[qIdx];
+  document.getElementById('q-counter').textContent = `QUESTION ${qIdx + 1} OF ${SAMPLE_QS.length} (INTERACTIVE PREVIEW)`;
+  document.getElementById('q-title').textContent = item.q;
+  document.getElementById('q-feedback').hidden = true;
+  document.getElementById('q-options').innerHTML = item.opts.map(o =>
+    `<button type="button" class="quiz-opt" onclick="answerQuiz(this,${o[1]},'${o[2].replace(/'/g, "\\'")}')">${o[0]}</button>`
+  ).join('');
+}
+
+function loadSamplePitch() {
+  const sample = "There are three recognised MBA modes: Regular MBA is full-time on campus; ODL/Distance MBA uses self-study materials with regional support centres; and an Online MBA runs digitally on the university LMS with video lectures, readings, discussion forums and assessments. Since you're working full-time, we can compare the syllabus and current exam rules of the Online and ODL options so you can pick what fits your week best.";
+  document.getElementById('pitch-input').value = sample;
+  evaluatePitch();
+}
+
+function evaluatePitch() {
+  const val = document.getElementById('pitch-input').value.toLowerCase();
+  document.getElementById('chk-1').checked = val.includes('regular') && (val.includes('odl') || val.includes('distance')) && val.includes('online');
+  document.getElementById('chk-2').checked = val.includes('campus') || val.includes('lms') || val.includes('self-study');
+  document.getElementById('chk-3').checked = val.includes('working') || val.includes('week') || val.includes('schedule');
+  document.getElementById('chk-4').checked = val.length > 60 && !val.includes('best mode is');
+}
+
+let timerInt = null;
+function startPitchTimer(btn) {
+  if (timerInt) { clearInterval(timerInt); timerInt = null; btn.textContent = '⏱ Start 60s Timer'; return; }
+  let sec = 60;
+  btn.textContent = '⏹ Stop Timer';
+  timerInt = setInterval(() => {
+    sec--;
+    document.getElementById('timer-display').textContent = '00:' + String(sec).padStart(2, '0');
+    if (sec <= 0) { clearInterval(timerInt); timerInt = null; btn.textContent = '⏱ Start 60s Timer'; }
+  }, 1000);
+}
+
+function addSmartNote() {
+  const inp = document.getElementById('note-text');
+  if (!inp.value.trim()) return;
+  const div = document.createElement('div');
+  div.style.cssText = 'background:var(--bg-subtle);padding:8px 10px;border-radius:8px;font-size:12px;border-left:3px solid var(--teal)';
+  div.innerHTML = `<b style="color:var(--teal)">00:52 · Saved Note</b><p style="margin-top:2px">${inp.value}</p>`;
+  document.getElementById('notes-feed').prepend(div);
+  inp.value = '';
+}
+
+function askCoach() {
+  const inp = document.getElementById('qa-input');
+  if (!inp.value.trim()) return;
+  const div = document.createElement('div');
+  div.style.cssText = 'background:var(--bg-subtle);padding:8px 10px;border-radius:8px;font-size:12px';
+  div.innerHTML = `<b>You asked:</b><p style="margin-top:2px">${inp.value}</p><p style="color:var(--violet);font-weight:700;margin-top:4px">AI Coach: In an Online degree, all four quadrants (Watch, Read, Ask, Test) are delivered digitally on the LMS with full credit equivalence under UGC rules.</p>`;
+  document.getElementById('qa-feed').prepend(div);
+  inp.value = '';
+}
+
+function filterQuickJump(q) {
+  if (q.trim().length > 2) {
+    switchView('player');
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+  if (e.key >= '1' && e.key <= '5' && !document.getElementById('view-player').hidden) {
+    setQuad(Number(e.key) - 1);
+  }
+});
+</script>
+</body>
+</html>

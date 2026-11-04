@@ -8,11 +8,17 @@
 <meta name="description" content="Walnut DataTech services for universities running online programmes: set-up, enrolment, examinations, support and placement.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=3">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
-<div class="mock-banner">Design mockup for the Walnut team · not the live site · <a href="https://walnutdatatech.com/solutions/" style="color:#fff;text-decoration:underline">see current page</a></div>
+<div class="mock-banner">
+  <span>Design mockup for the Walnut team · Concise &amp; high-density flow</span>
+  <span>·</span>
+  <a href="lms.html">Open Redesigned Student LMS →</a>
+  <span>·</span>
+  <a href="https://walnutdatatech.com/solutions/">see current live page</a>
+</div>
 
 <header class="site-header">
   <div class="wrap">
@@ -20,146 +26,191 @@
     <nav class="nav" aria-label="Main">
       <a href="index.html" class="active">Solutions</a>
       <a href="learning-suite.html">Learning Suite</a>
+      <a href="lms.html">Student LMS <span class="badge-new">New</span></a>
       <a href="https://walnutdatatech.com/academy/">Courses</a>
       <a href="https://walnutdatatech.com/jobs/">Jobs</a>
       <a href="https://walnutdatatech.com/partners/">Partners</a>
-      <a href="https://walnutdatatech.com/about/">About</a>
     </nav>
     <div class="header-cta">
-      <a class="signin" href="https://walnutdatatech.com/">Sign in</a>
+      <a class="signin" href="lms.html">Learner login</a>
       <a class="btn btn-primary btn-sm" href="#contact">Talk to us</a>
     </div>
   </div>
 </header>
 
 <main>
-  <!-- Hero -->
+  <!-- Compact Hero -->
   <div class="hero">
     <div class="wrap">
       <div class="hero-text">
-        <span class="eyebrow">For universities and institutions</span>
+        <span class="eyebrow">For universities &amp; institutions</span>
         <h1>One partner to run your <span class="accent">online programmes</span>, from set-up to placement</h1>
-        <p class="lead">Pick the services you need from 10 service areas. We set them up, run them day to day and keep them in line with UGC and DEB rules.</p>
+        <p class="lead">Pick only what you need from 10 service areas (58 modules). We set them up, run them day to day, and keep every step aligned with UGC and DEB rules.</p>
         <div class="btn-row">
-          <a class="btn btn-yellow" href="#build">Build your solution</a>
-          <a class="btn btn-ghost" href="#contact">Talk to us</a>
+          <a class="btn btn-yellow" href="#build">Build your solution ↓</a>
+          <a class="btn btn-ghost" href="lms.html">Explore Student LMS</a>
+          <a class="btn btn-ghost" href="learning-suite.html">See Learning Suite</a>
         </div>
         <div class="stats">
           <div class="stat"><b>10</b><span>service areas</span></div>
-          <div class="stat"><b>58</b><span>modules, take any</span></div>
-          <div class="stat"><b>2</b><span>ways to pay</span></div>
-          <div class="stat"><b>UGC</b><span>and DEB rules built in</span></div>
+          <div class="stat"><b>58</b><span>modular capabilities</span></div>
+          <div class="stat"><b>2</b><span>payment models</span></div>
+          <div class="stat"><b>UGC/DEB</b><span>4-Quadrant &amp; ABC ready</span></div>
         </div>
       </div>
       <div class="hero-shot"><img class="shot" src="images/evaluation.jpg" alt="Walnut On-Screen Evaluation dashboard showing exams, answer sheets evaluated and the exam pipeline" width="1456" height="797"></div>
     </div>
   </div>
 
-  <!-- Everything on one screen -->
-  <section>
+  <!-- Stage Map + Interactive Builder Unified for Better Flow & Less Scrolling -->
+  <section id="build" style="background:var(--bg-subtle)">
     <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">What we offer</span>
-        <h2>Everything for an online programme, on one screen</h2>
-        <p class="lead">Organised by the 4 stages a programme goes through. Click a service to see all its modules.</p>
+      <div class="sec-head-row">
+        <div>
+          <span class="eyebrow">Interactive Solution Builder</span>
+          <h2 style="margin-top:6px">Everything for an online programme, on one screen</h2>
+          <p class="lead">Click any service across the 4 lifecycle stages—or load a 1-click university preset—to build your custom scope.</p>
+        </div>
+        <div class="preset-bar" aria-label="Quick solution presets">
+          <span>Quick presets:</span>
+          <button type="button" class="preset-chip" onclick="applyPreset(['inf','con','exam','reg'])">🏛 UGC Launch Core (4)</button>
+          <button type="button" class="preset-chip" onclick="applyPreset(['mkt','cou','adm','sup'])">📈 Enrolment &amp; Counselling (4)</button>
+          <button type="button" class="preset-chip" onclick="applyPreset(['inf','con','mkt','cou','adm','exam','sup','reg','ai','plc'])">✨ Complete End-to-End (All 10)</button>
+        </div>
       </div>
-      <div class="grid-4" id="stage-map"></div>
-    </div>
-  </section>
 
-  <!-- Builder -->
-  <section id="build" style="background:#FBFAFF">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">Build your solution</span>
-        <h2>Add the services you need</h2>
-        <p class="lead">Choose a stage, add services, and get a proposal for exactly those modules.</p>
+      <!-- 4-Stage Visual Map (Clicking a service toggles it directly or filters below!) -->
+      <div class="grid-4" id="stage-map" style="margin-bottom:22px"></div>
+
+      <!-- Filter Tabs + Detailed Module Cards + Sticky Proposal Configurator -->
+      <div class="builder-toolbar">
+        <div class="tabs" role="tablist" aria-label="Programme stages" id="stage-tabs"></div>
+        <span style="font-size:12.5px;color:var(--muted);font-weight:700">Tip: Click any service card above or below to add/remove it from your proposal</span>
       </div>
-      <div class="tabs" role="tablist" aria-label="Programme stages" id="stage-tabs"></div>
+
       <div class="builder">
         <div id="svc-list"></div>
         <aside class="summary" aria-label="Your solution">
-          <h3>Your solution</h3>
-          <p class="empty" id="sum-empty">Nothing added yet. Add services from the list.</p>
+          <div class="summary-head">
+            <h3>Your custom scope</h3>
+            <button type="button" class="btn btn-ghost btn-xs" id="clear-btn" onclick="picked.clear();render()" hidden>Clear all</button>
+          </div>
+          <p class="empty" id="sum-empty">No services selected yet. Pick a preset above or click "+ Add" on any service.</p>
           <ul id="sum-list"></ul>
+          <div class="summary-metrics" id="sum-metrics" hidden>
+            <div><span>Selected scope</span><b id="metric-mods">0 modules</b></div>
+            <div><span>Est. go-live</span><b id="metric-time">4–6 weeks</b></div>
+          </div>
           <p class="count" id="sum-count"></p>
           <fieldset class="pay">
-            <legend>How would you like to pay?</legend>
-            <label><input type="radio" name="pay" checked><span>Revenue sharing<small>A percentage of programme revenue, per service</small></span></label>
-            <label><input type="radio" name="pay"><span>One-time payment<small>A fixed price per service, agreed up front</small></span></label>
+            <legend>Preferred commercial model</legend>
+            <label><input type="radio" name="pay" checked><span>Revenue sharing<small>% of programme fee per enrolled student</small></span></label>
+            <label><input type="radio" name="pay"><span>Fixed / one-time fee<small>Agreed upfront per selected module</small></span></label>
           </fieldset>
-          <a class="btn btn-primary" href="#contact">Get a proposal</a>
+          <a class="btn btn-primary" href="#contact">Get custom proposal →</a>
         </aside>
       </div>
     </div>
   </section>
 
-  <!-- Journey -->
+  <!-- Connected Student Journey + Regulation Readiness Combined in One Dense Band -->
   <section class="dark">
     <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">One connected platform</span>
-        <h2>Every step of the student journey runs on one system</h2>
+      <div class="sec-head-row" style="margin-bottom:18px">
+        <div>
+          <span class="eyebrow">One connected platform · UGC &amp; DEB aligned</span>
+          <h2 style="margin-top:6px">Every step of the student journey runs on one system</h2>
+        </div>
+        <a class="btn btn-yellow btn-sm" href="lms.html">Try the Student LMS Workspace →</a>
       </div>
       <ol class="journey">
-        <li><span class="n">1</span><b>Discover</b><span>University website for your online programmes</span></li>
-        <li><span class="n">2</span><b>Apply</b><span>Automated applications, scrutiny and verification</span></li>
-        <li><span class="n">3</span><b>Pay</b><span>Admission and fee payments, reconciled</span></li>
-        <li><span class="n">4</span><b>Learn</b><span>LMS, mobile app and virtual classroom</span></li>
-        <li><span class="n">5</span><b>Sit exams</b><span>Proctored online exams and marks lists</span></li>
-        <li><span class="n">6</span><b>Get help</b><span>Call, email, chat, tickets and WhatsApp updates</span></li>
-        <li><span class="n">7</span><b>Graduate</b><span>Academic records, reports and placement</span></li>
+        <li><span class="n">1</span><b>Discover</b><span>Programme microsites &amp; digital outreach</span></li>
+        <li><span class="n">2</span><b>Apply</b><span>Counselling, automated scrutiny &amp; verification</span></li>
+        <li><span class="n">3</span><b>Pay</b><span>Online admission &amp; fee reconciliation</span></li>
+        <li><span class="n">4</span><b>Learn</b><span>4-Quadrant LMS, mobile app &amp; live classes</span></li>
+        <li><span class="n">5</span><b>Sit exams</b><span>Proctored exams &amp; AI-assisted marking</span></li>
+        <li><span class="n">6</span><b>Get help</b><span>Call, chat, tickets &amp; WhatsApp support</span></li>
+        <li><span class="n">7</span><b>Graduate</b><span>ABC credit bank, transcripts &amp; placement</span></li>
       </ol>
+      <div class="grid-3" style="margin-top:16px">
+        <div class="card" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);color:#fff;flex-direction:row;align-items:center;gap:12px;padding:14px">
+          <span class="ico" style="background:var(--violet);flex-shrink:0">Q4</span>
+          <div><h3 style="color:#fff;font-size:15px">4-Quadrant Content Delivery</h3><p style="font-size:12.5px;color:#D4CEF0">Watch, Read, Ask &amp; Test delivered via LMS and mobile app per UGC norms.</p></div>
+        </div>
+        <div class="card" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);color:#fff;flex-direction:row;align-items:center;gap:12px;padding:14px">
+          <span class="ico" style="background:var(--coral);flex-shrink:0">EX</span>
+          <div><h3 style="color:#fff;font-size:15px">Compliant Proctored Exams</h3><p style="font-size:12.5px;color:#D4CEF0">End-to-end online exams, on-screen evaluation &amp; audit trails.</p></div>
+        </div>
+        <div class="card" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);color:#fff;flex-direction:row;align-items:center;gap:12px;padding:14px">
+          <span class="ico" style="background:var(--teal);flex-shrink:0">ABC</span>
+          <div><h3 style="color:#fff;font-size:15px">DEB &amp; ABC Reporting</h3><p style="font-size:12.5px;color:#D4CEF0">Automated regulatory reports and Academic Bank of Credit integration.</p></div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Regulation -->
+  <!-- 3 Connected Walnut Products Side-by-Side (Includes Student LMS!) -->
   <section>
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow">Regulation-ready</span>
-        <h2>Built for UGC and DEB rules</h2>
-        <p class="lead">Where regulation applies, the service is delivered in line with it.</p>
+        <span class="eyebrow">Connected product ecosystem</span>
+        <h2>Products your students, faculty and staff use every day</h2>
       </div>
-      <div class="grid-3">
-        <div class="card c-violet"><span class="ico">1</span><h3>Content delivery</h3><p>Through LMS and mobile app, as UGC Regulations require.</p></div>
-        <div class="card c-coral"><span class="ico">2</span><h3>Examinations</h3><p>Proctored online exams under current UGC Regulations.</p></div>
-        <div class="card c-teal"><span class="ico">3</span><h3>Reporting</h3><p>UGC/DEB reports, with Academic Bank of Credit registration and data sharing.</p></div>
+      <div class="promo-grid">
+        <div class="promo p-violet">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span class="eyebrow">Walnut Learning Suite</span>
+            <h3>Five connected apps for teaching, marking &amp; improvement</h3>
+            <p style="color:var(--muted);font-size:13.5px">Mark answer sheets on screen, design CBSE/UGC lessons and turn exam results into personal plans automatically.</p>
+          </div>
+          <div class="shot-frame"><img class="shot" src="images/portal.jpg" alt="Walnut Learning Suite portal" loading="lazy" width="1456" height="797"></div>
+          <div class="btn-row">
+            <a class="btn btn-dark btn-sm" href="learning-suite.html">Explore Learning Suite</a>
+            <a class="btn btn-outline btn-sm" href="https://walnutdatatech.com/learning-suite/demo/">Live Demo</a>
+          </div>
+        </div>
+
+        <div class="promo p-amber">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span class="eyebrow">Walnut Student LMS</span>
+            <h3>Zero-scroll 4-Quadrant workspace for online learners</h3>
+            <p style="color:var(--muted);font-size:13.5px">Split-screen video lectures, structured notes, PDF books, self-check quizzes, live classes and AI roleplay labs.</p>
+          </div>
+          <div class="shot-frame"><img class="shot" src="images/plans.jpg" alt="Walnut Student LMS workspace" loading="lazy" width="1456" height="797"></div>
+          <div class="btn-row">
+            <a class="btn btn-dark btn-sm" href="lms.html">Open Redesigned LMS</a>
+            <a class="btn btn-outline btn-sm" href="https://lms.walnutdatatech.com/dashboard">Current LMS</a>
+          </div>
+        </div>
+
+        <div class="promo p-teal">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span class="eyebrow">Walnut Jobs</span>
+            <h3>Connect graduates directly to global employers</h3>
+            <p style="color:var(--muted);font-size:13.5px">Graduates see the exact skills employers ask for, earn verifiable Walnut certificates and apply ready.</p>
+          </div>
+          <div class="shot-frame"><img class="shot" src="images/jobs.jpg" alt="Walnut Jobs platform" loading="lazy" width="1456" height="797"></div>
+          <div class="btn-row">
+            <a class="btn btn-dark btn-sm" href="https://walnutdatatech.com/jobs/">See Walnut Jobs</a>
+            <a class="btn btn-outline btn-sm" href="https://walnutdatatech.com/jobs/demo/">Open Demo</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Products -->
-  <section style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head"><span class="eyebrow">Also from Walnut</span><h2>Products your students and staff use every day</h2></div>
-      <div class="promo p-violet">
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <span class="eyebrow">Walnut Learning Suite</span>
-          <h3 style="font-size:26px">Five connected apps for teaching, assessment and improvement</h3>
-          <p style="color:var(--muted)">Mark answer sheets on screen, design better lessons and turn every result into a plan for each learner, with one login for the whole school.</p>
-          <div class="btn-row"><a class="btn btn-dark btn-sm" href="learning-suite.html">See the Learning Suite</a><a class="btn btn-outline btn-sm" href="https://walnutdatatech.com/learning-suite/demo/">Open the demo</a></div>
-        </div>
-        <div class="shot-frame"><img class="shot" src="images/portal.jpg" alt="Walnut portal home showing the five Learning Suite apps for a principal" loading="lazy" width="1456" height="797"></div>
-      </div>
-      <div class="promo p-teal">
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <span class="eyebrow">Walnut Jobs</span>
-          <h3 style="font-size:26px">Help your graduates into international jobs</h3>
-          <p style="color:var(--muted)">Graduates see the skills leading employers ask for and the Walnut course that certifies each one, so they apply ready, with certificates employers can verify.</p>
-          <div class="btn-row"><a class="btn btn-dark btn-sm" href="https://walnutdatatech.com/jobs/">See Walnut Jobs</a><a class="btn btn-outline btn-sm" href="https://walnutdatatech.com/jobs/demo/">Open the demo</a></div>
-        </div>
-        <div class="shot-frame"><img class="shot" src="images/jobs.jpg" alt="Walnut Jobs search page: global jobs and the skills to get them" loading="lazy" width="1456" height="797"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
+  <!-- Compact CTA -->
   <section id="contact" style="padding-top:0">
     <div class="wrap">
       <div class="cta">
-        <div><h2>Not sure where to start?</h2><p class="lead" style="margin-top:8px">Tell us about your programmes and we'll suggest the services that fit.</p></div>
-        <a class="btn btn-primary" href="https://walnutdatatech.com/contact/">Talk to us</a>
+        <div>
+          <h2>Ready to launch or scale your online programmes?</h2>
+          <p class="lead" style="margin-top:4px">Tell us about your university and we'll share a tailored module roadmap and commercial proposal.</p>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn-yellow" href="https://walnutdatatech.com/contact/">Talk to our team →</a>
+          <a class="btn btn-ghost" href="lms.html">Preview Student LMS</a>
+        </div>
       </div>
     </div>
   </section>
@@ -168,81 +219,106 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="cols">
-      <div><span class="logo-box"><img src="images/logo.svg" alt="Walnut DataTech" style="height:28px"></span><p>Technology, learning and partnerships for online education.</p><p style="margin-top:10px">Graphix Tower, A-13A, Block A, Sector 62, Noida, Uttar Pradesh 201309</p></div>
-      <div><h4>For universities</h4><a href="index.html">Solutions</a><a href="learning-suite.html">Learning Suite</a><a href="https://walnutdatatech.com/jobs/">Walnut Jobs</a></div>
+      <div><span class="logo-box"><img src="images/logo.svg" alt="Walnut DataTech" style="height:24px"></span><p>Technology, learning and partnerships for online education.</p><p style="margin-top:6px">Graphix Tower, A-13A, Block A, Sector 62, Noida, Uttar Pradesh 201309</p></div>
+      <div><h4>For universities</h4><a href="index.html">Solutions</a><a href="learning-suite.html">Learning Suite</a><a href="lms.html">Student LMS</a><a href="https://walnutdatatech.com/jobs/">Walnut Jobs</a></div>
       <div><h4>Courses</h4><a href="https://walnutdatatech.com/academy/">All courses</a><a href="https://walnutdatatech.com/">Verify a certificate</a></div>
       <div><h4>Company</h4><a href="https://walnutdatatech.com/about/">About</a><a href="https://walnutdatatech.com/contact/">Contact</a><a href="mailto:support@walnutdatatech.com">support@walnutdatatech.com</a></div>
     </div>
-    <p class="copy">© Walnut Data Tech Private Limited · Redesign mockup</p>
+    <p class="copy">© Walnut Data Tech Private Limited · High-density redesign mockup</p>
   </div>
 </footer>
 
 <script>
 const STAGES=[
   {num:'01',name:'Set up',goal:'Build the digital campus'},
-  {num:'02',name:'Enrol',goal:'Reach, advise and admit students'},
-  {num:'03',name:'Run',goal:'Teach, examine and support'},
+  {num:'02',name:'Enrol',goal:'Reach, advise & admit students'},
+  {num:'03',name:'Run',goal:'Teach, examine & support'},
   {num:'04',name:'Outcomes',goal:'From graduate to employed'}
 ];
 const SERVICES=[
-  {id:'inf',st:0,title:'Infrastructure Set-up',tag:'The cloud foundation your online campus runs on.',count:8,mods:['Cloud data centre','Integrated admissions, student and learning systems','University website for online programmes']},
-  {id:'con',st:0,title:'Content Creation & Set-up',tag:'Faculty knowledge, turned into digital learning.',count:10,mods:['Content digitisation','Access through LMS and mobile app','Video recording and production']},
-  {id:'mkt',st:1,title:'Marketing & Brand Outreach',tag:'Put your programmes in front of the right students.',count:7,mods:['Digital marketing','Student lead generation','Social media marketing']},
-  {id:'cou',st:1,title:'Counselling & Admission Support',tag:'A trained counsellor for every prospective student.',count:3,mods:['Counselling and programme advising','Trained counsellors','Promotion and outreach']},
-  {id:'adm',st:1,title:'Admission Management',tag:'Admissions, automated and verified end to end.',count:6,mods:['Admission automation','Student verification','Online fees management']},
-  {id:'exam',st:2,title:'Online Examination Management',tag:'Online examinations, from enrolment to results.',count:9,mods:['Online examination platform','Question bank digitisation','Examination data management']},
-  {id:'sup',st:2,title:'Student Support Services',tag:'Help for every student, on every channel.',count:4,mods:['Dedicated support centre','Continuous assistance','Student–faculty interaction']},
-  {id:'reg',st:2,title:'Reporting & Regulatory Support',tag:'The reports your regulators ask for, ready when needed.',count:4,mods:['Institutional reports','Academic Bank of Credit (ABC)','Regulatory compliance reporting']},
-  {id:'ai',st:2,title:'Automation & AI',tag:'Let routine work run itself.',count:2,mods:['Process automation','Agentic AI automation']},
-  {id:'plc',st:3,title:'Apprenticeship & Placement Assistance',tag:'From enrolled student to employed graduate.',count:5,mods:['Apprenticeship opportunities','Placement assistance','Industry tie-ups']}
+  {id:'inf',st:0,title:'Infrastructure Set-up',tag:'Cloud foundation & integrated campus systems.',count:8,mods:['Cloud data centre & hosting','Integrated admissions, SIS & LMS','Dedicated online programme website']},
+  {id:'con',st:0,title:'Content Creation & Set-up',tag:'Faculty knowledge turned into 4-Quadrant digital learning.',count:10,mods:['4-Quadrant content digitisation','LMS & mobile app publishing','Studio video recording & production']},
+  {id:'mkt',st:1,title:'Marketing & Brand Outreach',tag:'Put your programmes in front of high-intent learners.',count:7,mods:['Performance & organic digital marketing','Qualified student lead generation','Social & multi-channel brand outreach']},
+  {id:'cou',st:1,title:'Counselling & Admission Support',tag:'Trained, UGC-compliant counsellors for every applicant.',count:3,mods:['1-on-1 programme advising','Walnut Academy certified counsellors','Follow-up & conversion workflows']},
+  {id:'adm',st:1,title:'Admission Management',tag:'Admissions automated and verified end to end.',count:6,mods:['Automated application workflow','Document scrutiny & ID verification','Online fee collection & reconciliation']},
+  {id:'exam',st:2,title:'Online Examination Management',tag:'Proctored online exams, from scheduling to results.',count:9,mods:['Proctored online exam engine','Question bank & blueprint digitisation','On-screen evaluation & result processing']},
+  {id:'sup',st:2,title:'Student Support Services',tag:'Multi-channel help desk across the learner lifecycle.',count:4,mods:['Dedicated call, email & ticket desk','Proactive WhatsApp & SMS alerts','Live faculty doubt-clearing coordination']},
+  {id:'reg',st:2,title:'Reporting & Regulatory Support',tag:'Audit-ready UGC/DEB reports and ABC integration.',count:4,mods:['UGC/DEB statutory compliance reports','Academic Bank of Credit (ABC) sync','NAAC/NIRF data packs']},
+  {id:'ai',st:2,title:'Automation & AI',tag:'Let routine academic & ops workflows run themselves.',count:2,mods:['Enrolment & back-office automation','Agentic AI student & faculty assistants']},
+  {id:'plc',st:3,title:'Apprenticeship & Placement Assistance',tag:'From enrolled student to employed graduate.',count:5,mods:['Industry apprenticeships','Walnut Jobs international placement','Employer-verified skill certificates']}
 ];
-let stage=0; const picked=new Set();
+let stage = -1; // -1 = Show all stages in a dense grid by default!
+const picked = new Set(['inf','con','exam','reg']); // Pre-populated with UGC Launch Core so summary is immediately alive
 const el=(t,a={},h='')=>{const e=document.createElement(t);Object.assign(e,a);if(h)e.innerHTML=h;return e};
+
+function applyPreset(ids){
+  picked.clear();
+  ids.forEach(id=>picked.add(id));
+  render();
+}
 
 function renderMap(){
   const m=document.getElementById('stage-map');
+  m.innerHTML='';
   STAGES.forEach((s,i)=>{
     const box=el('div',{className:'stage s'+i},`<div class="stage-top"><span class="stage-num">${s.num}</span><h3>${s.name}</h3></div><p>${s.goal}</p>`);
     SERVICES.filter(v=>v.st===i).forEach(v=>{
-      const b=el('button',{type:'button',className:'svc-link'},`<span>${v.title}</span><small>${v.count} modules</small>`);
-      b.onclick=()=>{stage=i;render();document.getElementById('build').scrollIntoView()};
+      const on=picked.has(v.id);
+      const b=el('button',{type:'button',className:'svc-link'+(on?' is-picked':'')},`<span>${on?'✓ ':''}${v.title}</span><small>${v.count} mods</small>`);
+      b.onclick=()=>{on?picked.delete(v.id):picked.add(v.id);stage=i;render()};
       box.appendChild(b);
     });
     m.appendChild(box);
   });
 }
+
 function render(){
+  renderMap();
   const tabs=document.getElementById('stage-tabs');tabs.innerHTML='';
+  const allTab=el('button',{type:'button',className:'tab'},`All stages · ${SERVICES.length}`);
+  allTab.setAttribute('role','tab');allTab.setAttribute('aria-selected',stage===-1);
+  allTab.onclick=()=>{stage=-1;render()};
+  tabs.appendChild(allTab);
+
   STAGES.forEach((s,i)=>{
     const n=SERVICES.filter(v=>v.st===i).length;
     const t=el('button',{type:'button',className:'tab'},`${s.num} ${s.name} · ${n}`);
     t.setAttribute('role','tab');t.setAttribute('aria-selected',i===stage);
     t.onclick=()=>{stage=i;render()};tabs.appendChild(t);
   });
+
   const list=document.getElementById('svc-list');list.innerHTML='';
-  SERVICES.filter(v=>v.st===stage).forEach(v=>{
+  SERVICES.filter(v=>stage===-1 || v.st===stage).forEach(v=>{
     const on=picked.has(v.id);
     const c=el('article',{className:'svc-card'+(on?' added':'')});
     c.innerHTML=`<div class="svc-card-top"><div><h3>${v.title}</h3><p>${v.tag}</p></div></div>
       <ul class="ticks">${v.mods.map(m=>`<li>${m}</li>`).join('')}</ul>
-      ${v.count>v.mods.length?`<p class="more">Plus ${v.count-v.mods.length} more modules</p>`:''}`;
-    const b=el('button',{type:'button',className:'add-btn'},on?'Added ✓':'+ Add to my solution');
+      ${v.count>v.mods.length?`<p class="more">+ ${v.count-v.mods.length} more modules included</p>`:''}`;
+    const b=el('button',{type:'button',className:'add-btn'},on?'Added ✓':'+ Add');
     b.setAttribute('aria-pressed',on);
     b.onclick=()=>{on?picked.delete(v.id):picked.add(v.id);render()};
     c.querySelector('.svc-card-top').appendChild(b);list.appendChild(c);
   });
+
   const ul=document.getElementById('sum-list');ul.innerHTML='';
   let mods=0;
   SERVICES.filter(v=>picked.has(v.id)).forEach(v=>{
     mods+=v.count;
-    const li=el('li',{},`<span>${v.title}</span>`);
+    const li=el('li',{},`<span>${v.title} <small style="opacity:.75">(${v.count})</small></span>`);
     const x=el('button',{type:'button',ariaLabel:'Remove '+v.title},'×');
     x.onclick=()=>{picked.delete(v.id);render()};li.appendChild(x);ul.appendChild(li);
   });
-  document.getElementById('sum-empty').hidden=picked.size>0;
-  document.getElementById('sum-count').textContent=picked.size?`${picked.size} services · ${mods} modules. You pay only for the modules you select.`:'';
+  const hasAny = picked.size > 0;
+  document.getElementById('sum-empty').hidden = hasAny;
+  document.getElementById('clear-btn').hidden = !hasAny;
+  document.getElementById('sum-metrics').hidden = !hasAny;
+  if(hasAny){
+    document.getElementById('metric-mods').textContent = `${picked.size} areas · ${mods} mods`;
+    document.getElementById('metric-time').textContent = picked.size <= 3 ? '3–4 weeks' : (picked.size <= 6 ? '4–6 weeks' : '6–8 weeks');
+  }
+  document.getElementById('sum-count').textContent = hasAny ? 'Modular billing: pay only for the capabilities you activate.' : '';
 }
-renderMap();render();
+render();
 </script>
 </body>
 </html>
